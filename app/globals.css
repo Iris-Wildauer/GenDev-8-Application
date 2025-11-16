@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+    /*transform: scale(1.30);*/
+    transform-origin: top center;
+}
+
+body {
+    width: 100%;
+    overflow-x: hidden;
+}
