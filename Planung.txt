@@ -1,0 +1,3 @@
+TODO Topbar
+-SSR => Logo mit Link, Suchleiste, Kategorien
+-CSR => Anmeldestatus, Inseln der Kategorien
