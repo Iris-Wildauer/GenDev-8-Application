@@ -11,7 +11,6 @@ function TopBar() {
         <header className="w-full bg-[#0046B3] text-white shadow-md">
             <div className="mx-auto flex items-center justify-between px-20 py-4 gap-4">
 
-                {/* Branding */}
                 <div className="flex items-center gap-3">
                     <div className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10 text-xs font-bold">
                         C24

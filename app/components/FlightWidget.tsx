@@ -6,9 +6,12 @@ export default function FlightWidget() {
     const [data, setData] = useState(null);
 
     useEffect(() => {
-        fetch("/api/flight")
+        fetch("/api/widgets")
             .then(res => res.json())
-            .then(json => setData(json))
+            .then(json => {
+                console.log("API RESPONSE", json);
+                setData(json);
+            })
             .catch(() => setData(null));
     }, []);
 
@@ -24,9 +27,8 @@ export default function FlightWidget() {
 
     return (
         <div className="rounded-lg bg-white p-4 shadow-sm border">
-            <h2 className="text-sm font-semibold text-slate-900">Flight Deals</h2>
             <p className="mt-1 text-xs text-slate-600">
-                {data.destination} ab {data.price}
+                {data.id}, {data.title}
             </p>
         </div>
     );
