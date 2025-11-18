@@ -1,5 +1,5 @@
 import React from "react";
-import FlightWidget from "./components/FlightWidget";
+import Widget from "./components/Widget";
 
 export default function Page() {
     return (
@@ -11,16 +11,9 @@ export default function Page() {
             <p className="text-sm text-slate-700">
             </p>
 
-            <section className="grid gap-4 md:grid-cols-2">
+            <section className="grid gap-4 md:grid-cols-5">
 
-                <FlightWidget />
-
-                <div className="rounded-lg bg-white p-4 shadow-sm">
-                    <h2 className="text-sm font-semibold text-slate-900">
-                        Beispiel-Widget
-                    </h2>
-                    <p className="mt-1 text-xs text-slate-600">Beispiel Widget</p>
-                </div>
+                <Widget />
 
             </section>
         </div>

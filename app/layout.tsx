@@ -1,6 +1,5 @@
 import "./globals.css";
 
-// Metadata for SEO
 export const metadata = {
     title: "CHECK24 GenDev – Home Widgets PoC",
     description: "PoC für dezentrale Widgets",
@@ -24,11 +23,9 @@ function TopBar() {
                     </div>
                 </div>
 
-                {/* Status */}
                 <div className="hidden md:flex items-center gap-2">
                 </div>
 
-                {/* Links */}
                 <nav className="flex items-center gap-2 text-xl font-medium">
                     Username
                 </nav>
@@ -37,30 +34,14 @@ function TopBar() {
     );
 }
 
-function TopBarLink({ href, label, highlight }) {
-    const base =
-        "rounded-full px-3 py-1 transition text-xs whitespace-nowrap border border-transparent";
-    const normal = "bg-white/5 hover:bg-white/15 text-white";
-    const hi = "bg-white text-[#0046B3] hover:bg-[#f3f4ff]";
-
-    return (
-        <a
-            href={href}
-            className={`${base} ${highlight ? hi : normal}`}
-            target="_blank"
-            rel="noreferrer"
-        >
-            {label}
-        </a>
-    );
-}
-
 export default function RootLayout({ children }) {
     return (
         <html lang="de">
         <body className="min-h-screen bg-slate-50">
-        <TopBar />
-        <main className="mx-auto max-w-6xl px-1 py-6">{children}</main>
+            <TopBar />
+            <main className="mx-auto max-w-[1440px] px-4 sm:px-8 py-6">
+                {children}
+            </main>
         </body>
         </html>
     );
