@@ -10,7 +10,7 @@ export async function getWidgets(){
         getInternetWidgets()
     ]);
 
-    const widgets:WidgetInstance[] = [...internet] /*Kopie*/
+    const widgets:WidgetInstance[] = [...internet]
 
     return widgets;
 }

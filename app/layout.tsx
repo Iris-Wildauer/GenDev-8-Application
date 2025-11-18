@@ -11,9 +11,6 @@ function TopBar() {
             <div className="mx-auto flex items-center justify-between px-20 py-4 gap-4">
 
                 <div className="flex items-center gap-3">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-md bg-white/10 text-xs font-bold">
-                        C24
-                    </div>
                     <div className="flex flex-col">
             <span className="text-xl p-6 font-semibold uppercase tracking-wide">
               GenDev 8 – Home Widgets
