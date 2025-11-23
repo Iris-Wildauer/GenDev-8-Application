@@ -5,19 +5,17 @@ import React, { useEffect, useState } from "react";
 export default function Widget() {
     const [data, setData] = useState(null);
 
-function Sleep(milliseconds) {
-    return new Promise(resolve => setTimeout(resolve, milliseconds));
-}
+    const sleep = (milliseconds: number) =>  {
+        return new Promise(resolve => setTimeout(resolve, milliseconds));
+    }
 
     useEffect(() => {
         fetch("/api/widgets")
             .then(res => res.json())
             .then(async json => {
-                const firstWidget = json.widget[0];
-                await Sleep(1000);
+                await sleep(1000);
                 setData(json);
                 console.log(json)
-                console.log(firstWidget)
             })
             .catch(() => setData(null));
     }, []);
@@ -41,7 +39,7 @@ function Sleep(milliseconds) {
 
     return (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {data.widget && data.widget.length > 0 ? (
+            {!!data.widget && data.widget.length > 0 ? (
                 data.widget.map((widget, i) => (
                     <div
                         key={i}
