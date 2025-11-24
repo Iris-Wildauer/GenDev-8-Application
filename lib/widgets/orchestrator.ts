@@ -1,5 +1,3 @@
-import {getInsuranceWidgets} from "../../app/api/widgets/insurance/insurance"
-
 //Dynamische Discovery von Endpunkten möglich für schnellere Integration
 export enum WidgetCategory{
     Internet= "internet",
@@ -10,19 +8,31 @@ export enum WidgetCategory{
 export interface WidgetInstance {
     id: string,
     title: string,
-    category: WidgetCategory
+    category?: WidgetCategory
 }
 
 type InternetWidgetsResponse = {
     internet: WidgetInstance[];
 };
 
+type InsuranceWidgetsResponse = {
+    insurance: WidgetInstance[];
+}
+
 export async function getInternetWidgets(): Promise<WidgetInstance[]>{
     const res = await fetch("http://localhost:3000/api/widgets/internet");
     const data = await res.json() as InternetWidgetsResponse;
 
-    console.log("internet:", data); // NICHT mit + verketten!
+    console.log("internet:", data);
     return data.internet;
+}
+
+export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
+    const res = await fetch("http://localhost:3000/api/widgets/insurance");
+    const data = await res.json() as InsuranceWidgetsResponse;
+
+    console.log("internet:", data);
+    return data.insurance;
 }
 
 //Für neue widgets muss man sie einfach hier hinzufügen
