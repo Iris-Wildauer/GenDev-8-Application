@@ -1,4 +1,5 @@
-import type { WidgetInstance} from "../orchestrator";
+import type { WidgetInstance} from "../../../../lib/widgets/orchestrator";
+//WidgetInstance definition ändern!
 
 export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
     return [

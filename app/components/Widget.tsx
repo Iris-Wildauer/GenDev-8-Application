@@ -10,7 +10,7 @@ export default function Widget() {
     }
 
     useEffect(() => {
-        fetch("/api/widgets")
+        fetch("http://localhost:3000/api/widgets/")
             .then(res => res.json())
             .then(async json => {
                 await sleep(1000);

@@ -1,5 +1,4 @@
-import {getInternetWidgets} from "./providers/internet"
-import {getInsuranceWidgets} from "./providers/insurance"
+import {getInsuranceWidgets} from "../../app/api/widgets/insurance/insurance"
 
 //Dynamische Discovery von Endpunkten möglich für schnellere Integration
 export enum WidgetCategory{
@@ -7,15 +6,29 @@ export enum WidgetCategory{
     Insurance= "insurance"
 }
 
+//WidgetInstance definition ändern!
 export interface WidgetInstance {
     id: string,
     title: string,
     category: WidgetCategory
 }
 
+type InternetWidgetsResponse = {
+    internet: WidgetInstance[];
+};
+
+export async function getInternetWidgets(): Promise<WidgetInstance[]>{
+    const res = await fetch("http://localhost:3000/api/widgets/internet");
+    const data = await res.json() as InternetWidgetsResponse;
+
+    console.log("internet:", data); // NICHT mit + verketten!
+    return data.internet;
+}
+
 //Für neue widgets muss man sie einfach hier hinzufügen
    const WidgetProviders = [
        {
+           //callback function voll cool
            provider: getInternetWidgets,
            category: WidgetCategory.Internet
        },
@@ -41,5 +54,6 @@ export interface WidgetInstance {
            return [];
        });
 
+       console.log(widgets);
        return widgets;
    }
