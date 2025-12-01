@@ -1,4 +1,4 @@
-//Dynamische Discovery von Endpunkten möglich für schnellere Integration
+//eigentlich nur sinnvoll für die definitionen
 export enum WidgetCategory{
     Internet= "internet",
     Insurance= "insurance"
@@ -11,14 +11,14 @@ export interface WidgetInstance {
     category?: WidgetCategory
 }
 
-type InternetWidgetsResponse = {
+export type InternetWidgetsResponse = {
     internet: WidgetInstance[];
 };
 
-type InsuranceWidgetsResponse = {
+export type InsuranceWidgetsResponse = {
     insurance: WidgetInstance[];
 }
-
+/*
 export async function getInternetWidgets(): Promise<WidgetInstance[]>{
     const res = await fetch("http://localhost:3000/api/widgets/internet");
     const data = await res.json() as InternetWidgetsResponse;
@@ -67,3 +67,4 @@ export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
        console.log(widgets);
        return widgets;
    }
+ */

@@ -1,6 +1,5 @@
 import { NextRequest } from 'next/server';
-import { NextResponse } from 'next/server'
-import type { WidgetInstance} from "../../../../lib/widgets/orchestrator";
+import { NextResponse } from 'next/server';
 import { getInsuranceWidgets } from "./insurance";
 
 export async function GET(request: NextRequest){

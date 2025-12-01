@@ -1,9 +1,62 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
+import {WidgetCategory, WidgetInstance, InternetWidgetsResponse, InsuranceWidgetsResponse} from "../../../../lib/widgets/orchestrator";
 
 export async function GET(request: NextRequest){
-    const res = await fetch("http://localhost:3000/api/widgets").then(res => res.json());
-    return NextResponse.json(
-        res
+    const res = await getWidgets();
+    console.log("get funktion aufgerufen")
+    console.log(res);
+    return NextResponse.json({
+        internet: res.filter(w => w.category === WidgetCategory.Internet),
+        insurance: res.filter(w => w.category === WidgetCategory.Insurance)
+    });
+}
+
+export async function getInternetWidgets(): Promise<WidgetInstance[]>{
+    const res = await fetch("http://localhost:3000/api/widgets/internet");
+    const data = await res.json() as InternetWidgetsResponse;
+
+    console.log("internet:", data);
+    return data.internet;
+}
+
+export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
+    const res = await fetch("http://localhost:3000/api/widgets/insurance");
+    const data = await res.json() as InsuranceWidgetsResponse;
+
+    console.log("internet:", data);
+    return data.insurance;
+}
+
+//Für neue widgets muss man sie einfach hier hinzufügen
+const WidgetProviders = [
+    {
+        //callback function voll cool
+        provider: getInternetWidgets,
+        category: WidgetCategory.Internet
+    },
+    {
+        provider: getInsuranceWidgets,
+        category: WidgetCategory.Insurance
+    }
+];
+
+export async function getWidgets() {
+
+    const results = await Promise.allSettled(
+        WidgetProviders.map(({ provider }) => provider())
     );
+
+    const widgets: WidgetInstance[] = results.flatMap((result, index) => {
+        if (result.status === "fulfilled") {
+            const { category } = WidgetProviders[index];
+            return result.value.map(widget => ({
+                ...widget,
+                category
+            }));
+        }
+        return [];
+    });
+    console.log("widgets:" + widgets);
+    return widgets;
 }
