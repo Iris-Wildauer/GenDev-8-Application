@@ -8,7 +8,8 @@ export enum WidgetCategory{
 export interface WidgetInstance {
     id: string,
     title: string,
-    category?: WidgetCategory
+    category?: WidgetCategory,
+    priority?: number
 }
 
 export type InternetWidgetsResponse = {

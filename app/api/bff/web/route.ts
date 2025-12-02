@@ -1,62 +1,33 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
-import {WidgetCategory, WidgetInstance, InternetWidgetsResponse, InsuranceWidgetsResponse} from "../../../../lib/widgets/orchestrator";
+import {WidgetCategory} from "../../../../lib/widgets/orchestrator";
+import { getWidgets } from "./webBff"
 
 export async function GET(request: NextRequest){
     const res = await getWidgets();
     console.log("get funktion aufgerufen")
     console.log(res);
-    return NextResponse.json({
-        internet: res.filter(w => w.category === WidgetCategory.Internet),
-        insurance: res.filter(w => w.category === WidgetCategory.Insurance)
-    });
-}
-
-export async function getInternetWidgets(): Promise<WidgetInstance[]>{
-    const res = await fetch("http://localhost:3000/api/widgets/internet");
-    const data = await res.json() as InternetWidgetsResponse;
-
-    console.log("internet:", data);
-    return data.internet;
-}
-
-export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
-    const res = await fetch("http://localhost:3000/api/widgets/insurance");
-    const data = await res.json() as InsuranceWidgetsResponse;
-
-    console.log("internet:", data);
-    return data.insurance;
-}
-
-//Für neue widgets muss man sie einfach hier hinzufügen
-const WidgetProviders = [
-    {
-        //callback function voll cool
-        provider: getInternetWidgets,
-        category: WidgetCategory.Internet
-    },
-    {
-        provider: getInsuranceWidgets,
-        category: WidgetCategory.Insurance
-    }
-];
-
-export async function getWidgets() {
-
-    const results = await Promise.allSettled(
-        WidgetProviders.map(({ provider }) => provider())
-    );
-
-    const widgets: WidgetInstance[] = results.flatMap((result, index) => {
-        if (result.status === "fulfilled") {
-            const { category } = WidgetProviders[index];
-            return result.value.map(widget => ({
-                ...widget,
-                category
-            }));
+    const internet = res.filter(w => w.category === WidgetCategory.Internet)
+    const insurance =  res.filter(w => w.category === WidgetCategory.Insurance)
+    const widgetGroups = [
+        { category: 'internet',
+            widgets: internet,
+            priority: 10
+        },
+        { category: 'insurance',
+            widgets: insurance,
+            priority: 30
         }
-        return [];
+    ]
+        .sort((a, b) => b.priority - a.priority);
+
+    const response: Record<string, any> = {};
+    widgetGroups.forEach(group => {
+        response[group.category] = {
+            widgets: group.widgets.flat(),
+            priority: group.priority
+        }
     });
-    console.log("widgets:" + widgets);
-    return widgets;
+
+    return NextResponse.json(response);
 }

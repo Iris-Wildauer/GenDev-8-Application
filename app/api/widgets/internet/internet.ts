@@ -11,9 +11,9 @@ export async function getInternetWidgets(): Promise<WidgetInstance[]>{
             id:"internet.speed_test",
             title:"Internetgeschwindigkeit testen"
         },
-/*        {
+        {
             id:"internet.providers_comparison",
             title:"Internetanbieter vergleichen"
-        },*/
+        },
     ]
 }
