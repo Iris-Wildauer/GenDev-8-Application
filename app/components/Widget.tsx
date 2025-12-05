@@ -11,7 +11,7 @@ export default function Widget() {
     }
 
     useEffect(() => {
-        fetch("http://192.168.178.53:3000/api/bff/web")
+        fetch("http://localhost:3000/api/bff/web")
             .then(res => res.json())
             .then(async json => {
                 await sleep(1000);
