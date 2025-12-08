@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import {WidgetInstance, WidgetCategory} from "../../lib/widgets/orchestrator";
+import {WidgetInstance, WidgetCategory} from "../../lib/orchestrator";
 
 export default function Widget() {
     const [data, setData] = useState<WidgetInstance[] | null>(null);

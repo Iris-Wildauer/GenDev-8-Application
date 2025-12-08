@@ -1,4 +1,4 @@
-import {WidgetCategory, WidgetInstance,InternetWidgetsResponse, InsuranceWidgetsResponse} from "../../../../lib/widgets/orchestrator";
+import {WidgetCategory, WidgetInstance,InternetWidgetsResponse, InsuranceWidgetsResponse} from "../../../../lib/orchestrator";
 
 export async function getInternetWidgets(): Promise<WidgetInstance[]>{
     const res = await fetch("http://localhost:3000/api/widgets/internet");
