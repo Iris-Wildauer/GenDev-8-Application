@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Usernames } from "./components/Users"
 
 export const metadata = {
     title: "CHECK24 GenDev – Home Widgets PoC",
@@ -23,13 +24,23 @@ function TopBar() {
                 <div className="hidden md:flex items-center gap-2">
                 </div>
 
-                <nav className="flex items-center gap-2 text-xl font-medium">
-                    Username
+                <nav className="flex items-center gap-2 text-xl font-medium relative">
+{/*
+                    <details className="relative">
+                        <summary className="list-none cursor-pointer flex items-center gap-1">
+                            <span>{username || "Select User"}</span>
+                            <span aria-hidden>▾</span>
+                        </summary>
+*/}
+                        <Usernames />
+
+                    {/*</details>*/}
                 </nav>
             </div>
         </header>
     );
 }
+
 
 export default function RootLayout({ children }) {
     return (

@@ -3,7 +3,7 @@ services:
     build: .
     ports:
       - "3000:3000"
-      -
+
   redis:
     image: redis:alpine
     container_name: redis
@@ -12,12 +12,6 @@ services:
     restart: always
     networks:
       - app_network
-    volumes:
-      - redis_data:/data
-
-volumes:
-  redis_data:
-    driver: local
 
 networks:
   app_network:
