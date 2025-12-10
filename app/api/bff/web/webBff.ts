@@ -1,5 +1,5 @@
-import {WidgetCategory, WidgetInstance,InternetWidgetsResponse, InsuranceWidgetsResponse} from "../../../../lib/orchestrator";
-
+import {WidgetCategory, WidgetInstance, InsuranceWidgetsResponse} from "../../../../lib/orchestrator";
+/*
 export async function getInternetWidgets(): Promise<WidgetInstance[]>{
     const res = await fetch("http://localhost:3000/api/widgets/internet");
     const internetData = await res.json() as InternetWidgetsResponse;
@@ -7,9 +7,11 @@ export async function getInternetWidgets(): Promise<WidgetInstance[]>{
     console.log("internet:", internetData);
     return internetData.internet;
 }
-
+ */
 export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
-    const res = await fetch("http://localhost:3000/api/widgets/insurance");
+    console.log("hallo")
+    const res = await fetch("http://insurance:8080/");
+    console.log("bye")
     const data = await res.json() as InsuranceWidgetsResponse;
 
     console.log("insurance:", data);
@@ -18,11 +20,13 @@ export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
 
 //Für neue widgets muss man sie einfach hier hinzufügen
 const WidgetProviders = [
+    /*
     {
         //callback function voll cool
         provider: getInternetWidgets,
         category: WidgetCategory.Internet,
     },
+    */
     {
         provider: getInsuranceWidgets,
         category: WidgetCategory.Insurance,

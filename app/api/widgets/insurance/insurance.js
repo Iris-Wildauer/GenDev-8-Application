@@ -1,7 +1,4 @@
-import type { WidgetInstance} from "../../../../lib/orchestrator";
-//WidgetInstance definition ändern!
-
-export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
+function getInsuranceWidgets() {
     return [
         {
             id: "insurance.policy_review",
@@ -17,3 +14,5 @@ export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
         },
     ]
 }
+
+module.exports = { getInsuranceWidgets };
