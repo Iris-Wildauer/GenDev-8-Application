@@ -11,10 +11,11 @@ export default function Widget() {
     }
 
     useEffect(() => {
-        fetch(" http://localhost:3000/api/bff/web")
+
+        console.log("user")
+        fetch("http://localhost:3000/api/bff/web")
             .then(res => res.json())
-            .then(async json => {
-                await sleep(1000);
+            .then(json => {
                 setData(json);
                 console.log(json)
             })
@@ -41,7 +42,7 @@ export default function Widget() {
     return (
         <div className="space-y-8">
             {Object.entries(data).map(([category, group]) => {
-                const widgets = (group as any).widgets; // oder sauber typisieren
+                const widgets = (group as any).widgets;
                 return (
                     Array.isArray(widgets) && widgets.length > 0 && (
                         <div key={category}>

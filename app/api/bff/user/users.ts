@@ -31,5 +31,3 @@ export function getAllUsersNames(){
 export function getAllUserData(){
     return USERS;
 }
-
-//nur bff sollte direkt zugreifen, das frontend sollte eig per http die daten bekommen

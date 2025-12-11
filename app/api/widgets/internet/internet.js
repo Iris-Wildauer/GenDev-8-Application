@@ -1,7 +1,4 @@
-import type { WidgetInstance} from "../../../../lib/orchestrator";
-//WidgetInstance definition ändern!
-
-export async function getInternetWidgets(): Promise<WidgetInstance[]>{
+function getInternetWidgets(){
     return [
         {
             id: "internet.contract_update",
@@ -17,3 +14,5 @@ export async function getInternetWidgets(): Promise<WidgetInstance[]>{
         },
     ]
 }
+
+module.exports = { getInternetWidgets };

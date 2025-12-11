@@ -13,6 +13,14 @@ services:
     networks:
       - app_network
 
+  internet:
+    build: app/api/widgets/internet/
+    ports:
+      - "8081:8081"
+    networks:
+      - app_network
+
+
   redis:
     image: redis:alpine
     container_name: redis

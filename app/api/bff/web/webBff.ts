@@ -1,32 +1,22 @@
-import {WidgetCategory, WidgetInstance, InsuranceWidgetsResponse} from "../../../../lib/orchestrator";
-/*
+import {WidgetCategory, WidgetInstance} from "../../../../lib/orchestrator";
+
 export async function getInternetWidgets(): Promise<WidgetInstance[]>{
-    const res = await fetch("http://localhost:3000/api/widgets/internet");
-    const internetData = await res.json() as InternetWidgetsResponse;
-
-    console.log("internet:", internetData);
-    return internetData.internet;
+    const res = await fetch("http://internet:8081/");
+    return await res.json();
 }
- */
-export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
-    console.log("hallo")
-    const res = await fetch("http://insurance:8080/");
-    console.log("bye")
-    const data = await res.json() as InsuranceWidgetsResponse;
 
-    console.log("insurance:", data);
-    return data.insurance;
+export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
+    const res = await fetch("http://insurance:8080/");
+    return await res.json();
 }
 
 //Für neue widgets muss man sie einfach hier hinzufügen
 const WidgetProviders = [
-    /*
+
     {
-        //callback function voll cool
         provider: getInternetWidgets,
         category: WidgetCategory.Internet,
     },
-    */
     {
         provider: getInsuranceWidgets,
         category: WidgetCategory.Insurance,
@@ -35,19 +25,16 @@ const WidgetProviders = [
 
 export async function getWidgets() {
 
-    const results = await Promise.allSettled(
+    const results = await Promise.all(
         WidgetProviders.map(({ provider }) => provider())
     );
 
     const widgets: WidgetInstance[] = results.flatMap((result, index) => {
-        if (result.status === "fulfilled") {
             const { category} = WidgetProviders[index];
-            return result.value.map(widget => ({
+            return result.map(widget => ({
                 ...widget,
                 category,
             }));
-        }
-        return [];
     });
     console.log("widgets:" + widgets);
     return widgets;
