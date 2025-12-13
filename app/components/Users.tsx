@@ -32,6 +32,7 @@ export function Usernames() {
         }
         sendUser().then(response => {
             console.log("Empfangene Daten:", response);
+
         });
     }, [selectedUsername]);
 

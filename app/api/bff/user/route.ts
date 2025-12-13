@@ -12,5 +12,8 @@ export async function POST(request){
     const body = await request.json();
     console.log(body)
     currentUser = body;
+    if (globalThis.socketIO) {
+        globalThis.socketIO.emit('user-change', currentUser);
+    }
     return new NextResponse("received request")
 }

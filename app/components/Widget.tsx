@@ -2,13 +2,48 @@
 
 import React, { useEffect, useState } from "react";
 import {WidgetInstance, WidgetCategory} from "../../lib/orchestrator";
+import{ socket } from "../../socket"
+
 
 export default function Widget() {
     const [data, setData] = useState<WidgetInstance[] | null>(null);
+    const [isConnected, setIsConnected] = useState(false);
+    const [messages, setMessages] = useState([]);
+    const [user, setUser] = useState(null);
 
-    const sleep = (milliseconds: number) => {
-        return new Promise(resolve => setTimeout(resolve, milliseconds));
-    }
+        useEffect(() => {
+            // Verbindung überwachen
+            function onConnect() {
+                setIsConnected(true);
+            }
+
+            function onDisconnect() {
+                setIsConnected(false);
+            }
+
+            // Nachrichten vom Server empfangen
+            function onServerMessage(data) {
+                setMessages((prev) => [...prev, data]);
+            }
+
+            function onUserChange(user){
+                setUser(user);
+            }
+
+            // Events registrieren
+            socket.on("connect", onConnect);
+            socket.on("disconnect", onDisconnect);
+            socket.on("server-message", onServerMessage);
+            socket.on("user-change", onUserChange)
+
+            // Cleanup beim Unmount
+            return () => {
+                socket.off("connect", onConnect);
+                socket.off("disconnect", onDisconnect);
+                socket.off("server-message", onServerMessage);
+                socket.off("user-change", onUserChange)
+            };
+        }, []);
 
     useEffect(() => {
 
@@ -20,7 +55,8 @@ export default function Widget() {
                 console.log(json)
             })
             .catch(() => setData(null));
-    }, []);
+    }, [user]);
+
 
     /* Skeleton */
     if (!data) {
