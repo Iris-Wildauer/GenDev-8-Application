@@ -13,7 +13,7 @@ export async function POST(request){
     console.log(body)
     currentUser = body;
     if (globalThis.socketIO) {
-        globalThis.socketIO.emit('user-change', currentUser);
+        globalThis.socketIO.emit('user-change', currentUser); //hier eigentlich nur eine message an den user, kein broadcast!
     }
     return new NextResponse("received request")
 }

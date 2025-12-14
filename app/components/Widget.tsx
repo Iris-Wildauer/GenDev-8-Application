@@ -11,7 +11,7 @@ export default function Widget() {
     const [messages, setMessages] = useState([]);
     const [user, setUser] = useState(null);
 
-        useEffect(() => {
+        useEffect(() => { //server logik muss in eine eigene datei bitte danke gerngeschehen
             // Verbindung überwachen
             function onConnect() {
                 setIsConnected(true);
@@ -57,6 +57,9 @@ export default function Widget() {
             .catch(() => setData(null));
     }, [user]);
 
+    console.log(data)
+    console.log("halo")
+    console.log(messages)
 
     /* Skeleton */
     if (!data) {
@@ -79,6 +82,8 @@ export default function Widget() {
         <div className="space-y-8">
             {Object.entries(data).map(([category, group]) => {
                 const widgets = (group as any).widgets;
+                console.log('Category:', category); // Debug: Kategorie
+                console.log('Widgets:', widgets); // Debug: Alle Widgets
                 return (
                     Array.isArray(widgets) && widgets.length > 0 && (
                         <div key={category}>
@@ -89,13 +94,25 @@ export default function Widget() {
                                 {widgets.map((widget: WidgetInstance) => (
                                     <div
                                         key={widget.id}
-                                        className="rounded-lg bg-white p-6 shadow-sm border w-full min-w-[250px] max-w-[460px]">
-                                        <h3 className="text-lg font-semibold text-slate-900">
-                                            {widget.id}
-                                        </h3>
-                                        <p className="mt-2 text-base text-slate-700">
-                                            {widget.title}
-                                        </p>
+                                        className="relative rounded-lg p-6 shadow-sm border w-full min-w-[250px] max-w-[460px]"
+                                        style={{
+                                            backgroundImage: widget.picture ? `url(${widget.picture})` : 'none',
+                                            backgroundSize: 'cover',
+                                            backgroundPosition: 'center',
+                                            backgroundRepeat: 'no-repeat',
+                                            backgroundColor: widget.picture ? 'transparent' : 'white'
+                                        }}>
+                                        {widget.picture && (
+                                            <div className="absolute inset-0 bg-black/50 rounded-lg"></div>
+                                        )}
+                                        <div className="relative z-10">
+                                            <h3 className={`text-lg font-semibold ${widget.picture ? 'text-white' : 'text-slate-900'}`}>
+                                                {widget.id}
+                                            </h3>
+                                            <p className={`mt-2 text-base ${widget.picture ? 'text-white' : 'text-slate-700'}`}>
+                                                {widget.title}
+                                            </p>
+                                        </div>
                                     </div>
                                 ))}
                             </div>

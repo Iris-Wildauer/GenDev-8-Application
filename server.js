@@ -14,7 +14,7 @@ app.prepare().then(() => {
 
     const io = new Server(httpServer);
 
-    globalThis.socketIO = io;
+    globalThis.socketIO = io; //je ein socket pro user!!
 
     io.on("connection", (socket) => {
         console.log("client connected")

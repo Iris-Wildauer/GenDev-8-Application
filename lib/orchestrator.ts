@@ -6,6 +6,7 @@ export enum WidgetCategory{
 
 //WidgetInstance definition ändern!
 export interface WidgetInstance {
+    picture?: string;
     id: string,
     title: string,
     category?: WidgetCategory,
