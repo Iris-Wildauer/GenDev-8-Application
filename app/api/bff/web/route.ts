@@ -10,11 +10,11 @@ export async function GET(request: NextRequest){
     const insurance =  res.filter(w => w.category === WidgetCategory.Insurance)
     const preferences = currentUser?.preferences ?? { internet: 10, insurance: 10 };
     const widgetGroups = [
-        { category: 'internet',
+        { category: WidgetCategory.Internet,
             widgets: internet,
             priority: preferences.internet
         },
-        { category: 'insurance',
+        { category: WidgetCategory.Insurance,
             widgets: insurance,
             priority: preferences.insurance
         }

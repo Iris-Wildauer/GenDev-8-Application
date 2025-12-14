@@ -1,7 +1,7 @@
 //eigentlich nur sinnvoll für die definitionen
 export enum WidgetCategory{
-    Internet= "internet",
-    Insurance= "insurance"
+    Internet= "Internet",
+    Insurance= "Versicherung"
 }
 
 //WidgetInstance definition ändern!

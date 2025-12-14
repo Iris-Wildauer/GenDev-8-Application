@@ -30,7 +30,7 @@ export async function getWidgets() {
     );
 
     const widgets: WidgetInstance[] = results.flatMap((result, index) => {
-            const { category} = WidgetProviders[index];
+            const { category } = WidgetProviders[index];
             return result.map(widget => ({
                 ...widget,
                 category,
