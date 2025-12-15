@@ -1,4 +1,4 @@
-import {WidgetCategory, WidgetInstance} from "../../../../lib/orchestrator";
+import {WidgetCategory, WidgetInstance} from "../../../../lib/widgetDefinitions";
 
 export async function getInternetWidgets(): Promise<WidgetInstance[]>{
     const res = await fetch("http://internet:8081/");

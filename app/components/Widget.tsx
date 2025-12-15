@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import {WidgetInstance, WidgetCategory} from "../../lib/orchestrator";
+import {WidgetInstance, WidgetCategory} from "../../lib/widgetDefinitions";
 import{ socket } from "../../socket"
 
 

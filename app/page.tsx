@@ -8,7 +8,7 @@ export default function Page() {
                 CHECK24 GenDev
             </h1>
             <section className="w-full">
-                <Widget />
+                <Widget/>
             </section>
         </div>
     );

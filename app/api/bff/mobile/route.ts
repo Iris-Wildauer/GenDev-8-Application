@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
 import {WidgetCategory} from "../../../../lib/widgetDefinitions";
-import { getWidgets } from "./webBff"
+import { getWidgets } from "../web/webBff"
 import { currentUser } from "../user/route"
 
 export async function GET(request: NextRequest){
@@ -9,12 +9,15 @@ export async function GET(request: NextRequest){
     const internet = res.filter(w => w.category === WidgetCategory.Internet)
     const insurance =  res.filter(w => w.category === WidgetCategory.Insurance)
     const preferences = currentUser?.preferences ?? { internet: 10, insurance: 10 };
-    const WidgetGroups = [
-        { category: WidgetCategory.Internet,
+
+    const widgetGroups = [
+        {
+            category: WidgetCategory.Internet,
             widgets: internet,
             priority: preferences.internet
         },
-        { category: WidgetCategory.Insurance,
+        {
+            category: WidgetCategory.Insurance,
             widgets: insurance,
             priority: preferences.insurance
         }
@@ -23,12 +26,31 @@ export async function GET(request: NextRequest){
         .sort((a, b) => b.priority - a.priority);
 
     const response: Record<string, any> = {};
-    WidgetGroups.forEach(group => {
-
+    widgetGroups.forEach(group => {
         response[group.category] = {
             widgets: group.widgets,
             priority: group.priority
         }
     });
-    return NextResponse.json(response);
+
+    //Duplicate Code könnt ich in eine Datei packen
+
+    return NextResponse.json(response, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }
+    });
+}
+
+export async function OPTIONS(request: NextRequest) {
+    return new NextResponse(null, {
+        status: 200,
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+        }
+    });
 }

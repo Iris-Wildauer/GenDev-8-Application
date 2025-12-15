@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 html {
-    /*transform: scale(1.30);*/
     transform-origin: top center;
 }
 
