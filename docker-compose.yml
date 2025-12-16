@@ -5,6 +5,9 @@ services:
       - "3000:3000"
     networks:
       - app_network
+    environment:
+      - INSURANCE=http://insurance:8080
+      - INTERNET=http://internet:8081
 
   insurance:
     build: app/api/widgets/insurance/

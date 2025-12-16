@@ -7,7 +7,7 @@ export function Usernames() {
     const [selectedUsername, setUser]  = useState(null);
 
     useEffect(() => {
-        fetch("http://localhost:3000/api/bff/user/")
+        fetch(process.env.NEXT_PUBLIC_USERS)
             .then(res => res.json())
             .then(json => {
                 setAllUsers(json);
@@ -15,7 +15,7 @@ export function Usernames() {
     }, []);
 
     const sendUser = async () => {
-        return await fetch("http://localhost:3000/api/bff/user/", {
+        return await fetch(process.env.NEXT_PUBLIC_USERS, {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({

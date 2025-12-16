@@ -44,7 +44,7 @@ export default function Widget() {
     useEffect(() => {
 
         console.log("user")
-        fetch("http://localhost:3000/api/bff/web")
+        fetch(process.env.NEXT_PUBLIC_WEBBFF)
             .then(res => res.json())
             .then(json => {
                 setData(json);
@@ -93,7 +93,7 @@ export default function Widget() {
                                                 className="h-full w-full bg-cover bg-center transition duration-600 ease-in-out hover:scale-110"
                                                 style={{
                                                     backgroundImage: widget.picture
-                                                        ? `url("${widget.picture}")`
+                                                        ? `url("${process.env.NEXT_PUBLIC_INSURANCE}${widget.picture}")`
                                                         : 'linear-gradient(to top right, #4c1d95, #0369a1, #22d3ee)'
                                                 }}>
                                             </div>

@@ -1,19 +1,20 @@
 function getInsuranceWidgets() {
+    console.log("link")
     return [
                 {
                     id: "insurance.policy_review",
                     title: "Versicherungsvertrag überprüfen",
-                    picture: "http://localhost:8080/images/cat.jpg"
+                    picture: "images/cat.jpg" //ganz wichtig kein / am anfang!!!!!
                 },
                 {
                     id: "insurance.claim_assistance",
                     title: "Unterstützung bei Schadensfällen",
-                    picture: "http://localhost:8080/images/cat2.jpg"
+                    picture: "images/cat2.jpg"
                 },
                 {
                     id: "insurance.providers_comparison",
                     title: "Versicherungsanbieter vergleichen",
-                    picture: "http://localhost:8080/images/cat3.jpg"
+                    picture: "images/cat3.jpg"
                 },
             ]
 
