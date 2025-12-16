@@ -1,14 +1,27 @@
 import {WidgetCategory, WidgetInstance} from "../../../../lib/widgetDefinitions";
+import { getCached } from '../../../../lib/cache';
 
-export async function getInternetWidgets(): Promise<WidgetInstance[]>{
-    const res = await fetch(process.env.INTERNET);
-    return await res.json();
+export async function getInternetWidgets(userId: string): Promise<WidgetInstance[]>{
+    return getCached(
+        `widgets:internet:${userId}`,
+        async () => {
+            const res = await fetch(process.env.INTERNET + `?userId=${userId}`);
+            return await res.json();
+        },
+        300 // 5 minutes TTL
+    );
+}
+export async function getInsuranceWidgets(userId: string): Promise<WidgetInstance[]>{
+    return getCached(
+        `widgets:insurance:${userId}`,
+        async () => {
+            const res = await fetch(process.env.INSURANCE + `?userId=${userId}`);
+            return await res.json();
+        },
+        300 // 5 minutes TTL
+    );
 }
 
-export async function getInsuranceWidgets(): Promise<WidgetInstance[]>{
-    const res = await fetch(process.env.INSURANCE);
-    return await res.json();
-}
 
 //Für neue widgets muss man sie einfach hier hinzufügen
 const WidgetProviders = [
@@ -23,19 +36,26 @@ const WidgetProviders = [
     }
 ];
 
-export async function getWidgets() {
+export async function getWidgets(userId) {
 
-    const results = await Promise.all(
-        WidgetProviders.map(({ provider }) => provider()) //eigentlich selfregistration!
+    return getCached(
+        `widgets:all:${userId}`,
+        async () => {
+            const results = await Promise.all(
+                WidgetProviders.map(({ provider }) => provider(userId))
+            );
+
+            const widgets: WidgetInstance[] = results.flatMap((result, index) => {
+                const { category } = WidgetProviders[index];
+                return result.map(widget => ({
+                    ...widget,
+                    category,
+                }));
+            });
+
+            console.log(`[BFF] Fetched ${widgets.length} widgets for ${userId}`);
+            return widgets;
+        },
+        300 // 5 minutes TTL
     );
-
-    const widgets: WidgetInstance[] = results.flatMap((result, index) => {
-            const { category } = WidgetProviders[index];
-            return result.map(widget => ({
-                ...widget,
-                category,
-            }));
-    });
-    console.log("widgets:" + widgets);
-    return widgets;
 }

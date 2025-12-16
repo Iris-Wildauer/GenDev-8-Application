@@ -1,6 +1,8 @@
+//TODO: Auth
+
 const USERS = [
     {
-        id: 1,
+        id: "user_1",
         username: "A",
         preferences: {
             internet: 10,
@@ -8,7 +10,7 @@ const USERS = [
         }
     },
     {
-        id: 2,
+        id: "user_2",
         username: "B",
         preferences: {
             internet: 20,
@@ -17,8 +19,8 @@ const USERS = [
     }
 ] as const;
 
-export function getUser(username: string){
-    return USERS.find(u => u.username == username);
+export function getUserById(id: string){
+    return USERS.find(u => u.id == id);
 }
 
 export function getAllUsersNames(){

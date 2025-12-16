@@ -6,8 +6,7 @@ services:
     networks:
       - app_network
     environment:
-      - INSURANCE=http://insurance:8080
-      - INTERNET=http://internet:8081
+      - REDIS_URL=redis://redis:6379
 
   insurance:
     build: app/api/widgets/insurance/
