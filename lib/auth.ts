@@ -1,15 +1,23 @@
 import { NextRequest } from 'next/server';
-import { getUserById } from '../app/api/bff/user/users';
+import { currentUser } from '../app/api/bff/user/route';
+import { DEFAULT_USER, getUserById } from '../app/api/bff/user/users';
 
 export async function getAuthenticatedUser(request: NextRequest) {
-    const userId = request.nextUrl.searchParams.get('userId') || 'user_1';
+    const userIdParam = request.nextUrl.searchParams.get('userId');
 
-    const user = getUserById(userId);
-
-    if (!user) {
-        throw new Error(`User not found: ${userId}`);
+    if (userIdParam) {
+        const user = getUserById(userIdParam);
+        if (user) {
+            console.log(`[Auth] ${user.id} (${user.username})`);
+            return user;
+        }
     }
 
-    console.log(`[Auth] User: ${user.id} (${user.username})`);
-    return user;
+    if (currentUser) {
+        console.log(`[Auth] ${currentUser.id} (${currentUser.username})`);
+        return currentUser;
+    }
+
+    console.log(`[Auth] DEFAULT_USER`);
+    return DEFAULT_USER;
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import {useEffect, useState} from "react";
+import {socket} from "../../socket";
 
 export function Usernames() {
     const [allUsers, setAllUsers] = useState([])
@@ -10,8 +11,14 @@ export function Usernames() {
         fetch(process.env.NEXT_PUBLIC_USERS)
             .then(res => res.json())
             .then(json => {
-                setAllUsers(json);
+                setAllUsers(json.allUsers || json);
+
+                if (json.currentUser) {
+                    setUser(json.currentUser);
+                }
+                console.log('Loaded users:', json);
             })
+            .catch(err => console.error('Failed to load users:', err));
     }, []);
 
     const sendUser = async () => {
@@ -21,7 +28,9 @@ export function Usernames() {
             body: JSON.stringify({
                 id: selectedUsername.id,
                 username: selectedUsername.username,
-                preferences: selectedUsername.preferences,})
+                preferences: selectedUsername.preferences,
+                socketId: socket.id
+            })
         })
     }
 

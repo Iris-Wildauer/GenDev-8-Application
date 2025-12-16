@@ -8,7 +8,7 @@ export async function getInternetWidgets(userId: string): Promise<WidgetInstance
             const res = await fetch(process.env.INTERNET + `?userId=${userId}`);
             return await res.json();
         },
-        300 // 5 minutes TTL
+        300
     );
 }
 export async function getInsuranceWidgets(userId: string): Promise<WidgetInstance[]>{
@@ -18,7 +18,7 @@ export async function getInsuranceWidgets(userId: string): Promise<WidgetInstanc
             const res = await fetch(process.env.INSURANCE + `?userId=${userId}`);
             return await res.json();
         },
-        300 // 5 minutes TTL
+        300
     );
 }
 
@@ -56,6 +56,6 @@ export async function getWidgets(userId) {
             console.log(`[BFF] Fetched ${widgets.length} widgets for ${userId}`);
             return widgets;
         },
-        300 // 5 minutes TTL
+        300
     );
 }

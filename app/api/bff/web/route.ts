@@ -15,7 +15,7 @@ export async function GET(request: NextRequest){
     const preferences = await getCached(
         `preferences:${user.id}`,
         async () => user.preferences ?? { internet: 10, insurance: 10 },
-        3600 // 1 hour TTL
+        3600
     );
     const WidgetGroups = [
         { category: WidgetCategory.Internet,

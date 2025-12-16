@@ -14,11 +14,10 @@ app.prepare().then(() => {
 
     const io = new Server(httpServer);
 
-    globalThis.socketIO = io; //je ein socket pro user!!
+    globalThis.socketIO = io;
 
     io.on("connection", (socket) => {
         console.log("client connected")
-
         socket.emit("server-message", "hallo client :)");
     });
 

@@ -1,5 +1,3 @@
-//TODO: Auth
-
 const USERS = [
     {
         id: "user_1",
@@ -18,6 +16,16 @@ const USERS = [
         }
     }
 ] as const;
+
+export const DEFAULT_USER = {
+    id: 'default',
+    username: 'guest',
+    name: 'Guest User',
+    preferences: {
+        internet: 10,
+        insurance: 10
+    }
+};
 
 export function getUserById(id: string){
     return USERS.find(u => u.id == id);

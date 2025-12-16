@@ -8,14 +8,13 @@ import {getCached} from "../../../../lib/cache";
 
 export async function GET(request: NextRequest){
     const user = await getAuthenticatedUser(request);
-    const widgets = await getWidgets(user.id);
     const res = await getWidgets(user.id);
     const internet = res.filter(w => w.category === WidgetCategory.Internet)
     const insurance =  res.filter(w => w.category === WidgetCategory.Insurance)
     const preferences = await getCached(
         `preferences:${user.id}`,
         async () => user.preferences ?? { internet: 10, insurance: 10 },
-        3600 // 1 hour TTL
+        3600
     );
 
     const widgetGroups = [

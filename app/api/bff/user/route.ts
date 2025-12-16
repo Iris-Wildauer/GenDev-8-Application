@@ -1,12 +1,14 @@
-// app/api/bff/user/route.ts
 import { NextResponse } from 'next/server'
 import { NextRequest } from 'next/server'
-import {getAllUserData, getAllUsersNames} from "./users"
+import { getAllUserData, DEFAULT_USER } from "./users"
 
-export let currentUser;
+export let currentUser = DEFAULT_USER;
 
 export async function GET(request: NextRequest) {
-    return NextResponse.json(getAllUserData(), {
+    return NextResponse.json({
+        allUsers: getAllUserData(),
+        currentUser: currentUser
+    }, {
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
@@ -17,14 +19,24 @@ export async function GET(request: NextRequest) {
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
-    console.log(body);
-    currentUser = body;
+    console.log('[POST /user] Received:', body);
 
-    if (globalThis.socketIO) {
+    currentUser = body;
+    console.log('[POST /user] Updated currentUser to:', currentUser.username);
+
+    if (globalThis.socketIO && body.socketId) {
+        globalThis.socketIO.to(body.socketId).emit('user-change', currentUser);
+        console.log(`[Socket.io] ✅ Sent user-change to socket: ${body.socketId}`);
+    } else if (globalThis.socketIO) {
+        // Fallback: Broadcast wenn keine socketId
         globalThis.socketIO.emit('user-change', currentUser);
+        console.log(`[Socket.io] ⚠️ Broadcast user-change (no socketId)`);
     }
 
-    return NextResponse.json({ success: true, user: currentUser }, {
+    return NextResponse.json({
+        success: true,
+        user: currentUser
+    }, {
         headers: {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
