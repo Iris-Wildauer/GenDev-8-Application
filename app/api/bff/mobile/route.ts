@@ -5,7 +5,7 @@ import { getWidgets } from "../web/webBff"
 import { currentUser } from "../user/route"
 import {getAuthenticatedUser} from "../../../../lib/auth";
 import {getCached} from "../../../../lib/cache";
-
+/*
 export async function GET(request: NextRequest){
     const user = await getAuthenticatedUser(request);
     const res = await getWidgets(user.id);
@@ -61,3 +61,6 @@ export async function OPTIONS(request: NextRequest) {
         }
     });
 }
+
+
+ */

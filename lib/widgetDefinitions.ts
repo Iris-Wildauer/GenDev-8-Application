@@ -10,3 +10,9 @@ export interface WidgetInstance {
     category?: WidgetCategory,
     priority?: number
 }
+
+export interface WidgetResult {
+    category: String,
+    data: WidgetInstance[],
+    priority?: number
+}

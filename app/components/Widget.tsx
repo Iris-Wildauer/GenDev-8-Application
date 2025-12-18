@@ -49,10 +49,10 @@ export default function Widget() {
                     Array.isArray(widgets) && widgets.length > 0 && (
                         <div key={category}>
                             <h2 className="text-xl font-bold text-slate-900 mb-4">
-                                {WidgetCategory[category as keyof typeof WidgetCategory] || category}
+                                {category}
                             </h2>
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {widgets.map((widget: WidgetInstance) => (
+                                {widgets.map((widget) => (
                                     <div
                                         key={widget.id}
                                         className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 w-full min-w-[250px] max-w-[460px] bg-white">
