@@ -43,8 +43,6 @@ export default function Widget() {
         <div className="space-y-8">
             {Object.entries(data).map(([category, group]) => {
                 const widgets = (group as any).widgets;
-                console.log('Category:', widgets.category); // Debug: Kategorie
-                console.log('Widgets:', widgets); // Debug: Alle Widgets
                 return (
                     Array.isArray(widgets) && widgets.length > 0 && (
                         <div key={category}>
@@ -62,7 +60,7 @@ export default function Widget() {
                                                 className="h-full w-full bg-cover bg-center transition duration-600 ease-in-out hover:scale-110"
                                                 style={{
                                                     backgroundImage: widget.picture
-                                                        ? `url("${process.env.NEXT_PUBLIC_INSURANCE}${widget.picture}")`
+                                                        ? `url("${process.env.NEXT_PUBLIC_PICTURES}${widget.picture}")`
                                                         : 'linear-gradient(to top right, #4c1d95, #0369a1, #22d3ee)'
                                                 }}>
                                             </div>

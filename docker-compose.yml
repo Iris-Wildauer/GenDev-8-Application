@@ -22,6 +22,14 @@ services:
     networks:
       - app_network
 
+  media:
+    build: app/api/widgets/media-service/
+    ports:
+      - "8082:8082"
+    networks:
+      - app_network
+
+
 
   redis:
     image: redis:alpine

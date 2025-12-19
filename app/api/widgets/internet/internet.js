@@ -4,15 +4,18 @@ function getInternetWidgets(){
         data: [
             {
                 id: "internet.contract_update",
-                title: "Internetvertrag optimieren"
+                title: "Internetvertrag optimieren",
+                picture: "images/200.jpg"
             },
             {
                 id:"internet.speed_test",
-                title:"Internetgeschwindigkeit testen"
+                title:"Internetgeschwindigkeit testen",
+                picture: "images/500.jpg"
             },
             {
                 id:"internet.providers_comparison",
-                title:"Internetanbieter vergleichen"
+                title:"Internetanbieter vergleichen",
+                picture: "images/599.jpg"
             },
         ]
     }
