@@ -1,21 +1,22 @@
 function getInsuranceWidgets() {
     return {
         category:"Insurance",
+        design:"style1",
         data: [
             {
                 id: "insurance.policy_review",
                 title: "Versicherungsvertrag überprüfen",
-                picture: "images/cat.jpg" //ganz wichtig kein / am anfang!!!!!
+                picture: "images/530.jpg"
             },
             {
                 id: "insurance.claim_assistance",
                 title: "Unterstützung bei Schadensfällen",
-                picture: "images/cat2.jpg"
+                picture: "images/202.jpg"
             },
             {
                 id: "insurance.providers_comparison",
                 title: "Versicherungsanbieter vergleichen",
-                picture: "images/cat3.jpg"
+                picture: "images/303.jpg"
             }
         ]
     }

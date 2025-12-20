@@ -28,21 +28,21 @@ export async function GET(request: NextRequest){
                     ? preferences.internet
                     : result.category === 'Insurance'
                         ? preferences.insurance
-                        : 0
+                        : 0,
+            design: result.design
         }))
         .sort((a, b) => b.priority - a.priority);
 
     const response: Record<string, any> = {};
 
     widgetGroups.forEach(group => {
-
         response[group.category as string] = {
             widgets: group.widgets,
-            priority: group.priority
+            priority: group.priority,
+            design: group.design
         }
     });
     console.log("die endgültigen widgets")
     console.log(response)
     return NextResponse.json(response);
-
 }

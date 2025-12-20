@@ -1,6 +1,7 @@
 function getInternetWidgets(){
     return {
         category: "Internet",
+        design:"style2",
         data: [
             {
                 id: "internet.contract_update",
