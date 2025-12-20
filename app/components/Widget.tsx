@@ -44,7 +44,7 @@ export default function Widget() {
         <div className="space-y-8">
             {Object.entries(data).map(([category, group]) => {
                 const widgets = (group as any).widgets;
-                const design = (group as any).design;
+                const design = group.design
 
                 console.log("logging");
                 console.log(design);

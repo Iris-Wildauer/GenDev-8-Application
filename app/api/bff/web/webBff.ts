@@ -35,7 +35,6 @@ const WidgetProviders = [
 ];
 
 export async function getWidgets(userId) {
-
     return getCached(
         `widgets:all:${userId}`,
         async () => {
