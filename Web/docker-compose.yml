@@ -22,6 +22,13 @@ services:
     networks:
       - app_network
 
+  vacation:
+    build: app/api/widgets/vacation/
+    ports:
+      - "8084:8084"
+    networks:
+      - app_network
+
   media:
     build: app/api/widgets/media-service/
     ports:
