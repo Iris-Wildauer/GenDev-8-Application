@@ -1,214 +1,140 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import {WidgetInstance, WidgetCategory} from "../../lib/widgetDefinitions";
-import{ socket } from "../../socket"
-import { useSocketConnection } from "./socketConnection"
-import {closestCorners, DndContext, DragEndEvent, useDraggable, useDroppable} from "@dnd-kit/core";
-import {useSortable,arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { WidgetInstance } from "../../lib/widgetDefinitions";
+import { socket } from "../../socket";
+import { useSocketConnection } from "./socketConnection";
+import { closestCorners, DndContext, DragEndEvent } from "@dnd-kit/core";
+import { useSortable, arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { GripHorizontal } from "lucide-react";
 
 export default function Widget() {
-    const {user, isConnected, messages, dataChange} = useSocketConnection();
-    const [data, setData] = useState<WidgetInstance[] | null>(null);
+    const { user } = useSocketConnection();
+    const [data, setData] = useState<any | null>(null);
     const [categoryOrder, setCategoryOrder] = useState<string[]>([]);
 
-
     useEffect(() => {
-        console.log("user")
-        fetch(process.env.NEXT_PUBLIC_WEBBFF)
+        fetch(process.env.NEXT_PUBLIC_WEBBFF!)
             .then(res => res.json())
             .then(json => {
-                console.log("Fetched widget data:", json);
                 setData(json);
-                const categories = Object.keys(json);
-                setCategoryOrder(categories);
-                console.log("Data:", json);
-                console.log("Categories:", categories);
+                setCategoryOrder(Object.keys(json));
             })
             .catch(() => setData(null));
     }, [user]);
 
-
     const sendDnD = async (newOrder: string[]) => {
-        return await fetch(process.env.NEXT_PUBLIC_USERS, {
+        if (!user) return;
+        return await fetch(process.env.NEXT_PUBLIC_USERS!, {
             method: 'POST',
-            headers: {'Content-Type': 'application/json'},
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
                 method: 'setWidgetOrder',
-                categoryOrder: newOrder || categoryOrder,
+                categoryOrder: newOrder,
                 userId: user.id,
                 socketId: socket.id
             })
-        })
-    }
+        });
+    };
 
     function handleDragEnd(event: DragEndEvent) {
-        const {active, over} = event;
-        if (active.id !== over?.id && over) {
-            setCategoryOrder((items) => {
-                const oldIndex = items.indexOf(active.id as string);
-                const newIndex = items.indexOf(over.id as string);
-                const newOrder = arrayMove(items, oldIndex, newIndex);
+        const { active, over } = event;
+        if (over && active.id !== over.id) {
+            setCategoryOrder((currentItems) => {
+                const oldIndex = currentItems.indexOf(active.id as string);
+                const newIndex = currentItems.indexOf(over.id as string);
+                const newOrder = arrayMove(currentItems, oldIndex, newIndex);
                 sendDnD(newOrder);
-                console.log("category order:", newOrder);
                 return newOrder;
             });
         }
     }
 
-    function SortableItem({widgets, category, design}: { widgets: any[], category: string, design: string }) {
-        const {
-            attributes,
-            listeners,
-            setNodeRef,
-            transform,
-            transition
-        } = useSortable({id: category});
-
+    function SortableItem({ widgets, category, design }: { widgets: any[], category: string, design: string }) {
+        const { attributes, listeners, setNodeRef, transform, transition, isDragging } = useSortable({ id: category });
 
         const style = {
-            transform: transform ? `translate3d(${transform.x}px, ${transform.y}px, 0)` : undefined,
+            transform: CSS.Transform.toString(transform),
+            transition,
+            zIndex: isDragging ? 50 : 'auto',
         };
 
-
-        if (design == "style1") {
-            return (
-                <div
-                    ref={setNodeRef}
-                    style={style}
-                    {...attributes}
-                    {...listeners}
-                    className="cursor-grab active:cursor-grabbing">
-                    <div
-                        className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 bg-white mb-12">
-                        <div key={category}>
-                            <h2 className="text-xl font-bold text-slate-900 mb-4">
-                                {category}
-                            </h2>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-11">
-                                {widgets.map((widget: any) => (
-                                    <div
-                                        key={widget.id}
-                                        className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 w-full min-w-[250px] max-w-[460px] bg-white">
-                                        <div className="h-48 overflow-hidden">
-                                            <div
-                                                className="h-full w-full bg-cover bg-center transition duration-600 ease-in-out hover:scale-110"
-                                                style={{
-                                                    backgroundImage: widget.picture
-                                                        ? `url("${process.env.NEXT_PUBLIC_PICTURES}${widget.picture}")`
-                                                        : "linear-gradient(to top right, #4c1d95, #0369a1, #22d3ee)",
-                                                }}/>
-                                        </div>
-                                        <div className="p-6">
-                                            <h3 className="text-xl font-bold text-slate-900 mb-2">
-                                                {widget.title}
-                                            </h3>
-                                            <p className="text-sm text-slate-600">{widget.id}</p>
-                                        </div>
-                                    </div>
-                                ))}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
-        } else if (design == "style2") {
-            return (
-                <div
-                    ref={setNodeRef}
-                    style={style}
-                    {...attributes}
-                    {...listeners}
-                    className="cursor-grab active:cursor-grabbing">
-                    <div
-                        className="rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 bg-white mb-12">
-                <div key={category}>
-                    <h2 className="text-xl font-bold text-slate-900 mb-4">
+        return (
+            <div ref={setNodeRef} style={style} className={`mb-16 ${isDragging ? "opacity-50" : "opacity-100"}`}>
+                <div className="flex items-center gap-4 mb-6 group">
+                    <h2 className="text-2xl font-extrabold text-slate-800 tracking-tight leading-none">
                         {category}
                     </h2>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-11">
-                        {widgets.map((widget: any) => (
-                            <div
-                                key={widget.id}
-                                className="relative rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 w-full max-w-[460px] bg-white">
-                                <div className="h-52 w-full overflow-hidden relative">
+                    <div className="h-[2px] flex-grow bg-slate-100"></div>
+                    <div {...attributes} {...listeners} className="cursor-grab p-2 text-slate-300 hover:text-[#004fb6] transition-colors">
+                        <GripHorizontal size={24} />
+                    </div>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    {widgets.map((widget: any) => (
+                        design === "style1" ? (
+                            <div key={widget.id} className="group bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm hover:shadow-xl hover:border-[#004fb6] transition-all duration-300">
+                                <div className="h-56 overflow-hidden bg-slate-100">
                                     <div
-                                        className="h-full w-full bg-cover bg-center transition duration-600 ease-in-out hover:scale-110"
+                                        className="h-full w-full bg-cover bg-center group-hover:scale-105 transition-transform duration-700"
                                         style={{
                                             backgroundImage: widget.picture
                                                 ? `url("${process.env.NEXT_PUBLIC_PICTURES}${widget.picture}")`
-                                                : "linear-gradient(to top right, #4c1d95, #0369a1, #22d3ee)",
-                                        }}/>
-                                    <div
-                                        className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-transparent pointer-events-none"/>
-                                    <div className="absolute top-4 left-4 right-4 pointer-events-none">
-                                        <h3 className="text-xl font-bold text-white drop-shadow">
-                                            {widget.title}
-                                        </h3>
-                                        <p className="mt-1 text-sm text-white drop-shadow">
-                                            {widget.id}
-                                        </p>
-                                    </div>
+                                                : "linear-gradient(135deg, #004fb6 0%, #002e6b 100%)",
+                                        }}
+                                    />
+                                </div>
+                                <div className="p-6">
+                                    <div className="text-[11px] font-bold text-[#004fb6] uppercase tracking-widest mb-2">ID: {widget.id}</div>
+                                    <h3 className="text-xl font-bold text-slate-900 mb-4 group-hover:text-[#004fb6] transition-colors">
+                                        {widget.title}
+                                    </h3>
+                                    <button className="w-full py-3 bg-[#004fb6] text-white font-bold rounded-lg hover:bg-[#003a8c] transition-colors shadow-md shadow-blue-200">
+                                        Details ansehen
+                                    </button>
                                 </div>
                             </div>
-                        ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            );
-        }
-
-
-        /* Skeleton */
-        if (!data) {
-            return (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {[1, 2, 3].map((_, index) => (
-                        <div
-                            key={index}
-                            className="rounded-lg bg-white p-4 shadow-sm border space-y-3 animate-pulse">
-                            <div className="h-5 w-1/2 bg-slate-200 rounded"/>
-                            <div className="h-4 w-full bg-slate-200 rounded"/>
-                            <div className="h-4 w-3/4 bg-slate-200 rounded"/>
-                        </div>
+                        ) : (
+                            <div key={widget.id} className="group relative h-80 rounded-2xl overflow-hidden shadow-lg">
+                                <div
+                                    className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
+                                    style={{
+                                        backgroundImage: widget.picture
+                                            ? `url("${process.env.NEXT_PUBLIC_PICTURES}${widget.picture}")`
+                                            : "linear-gradient(to bottom right, #004fb6, #60a5fa)",
+                                    }}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+                                <div className="absolute bottom-0 left-0 p-8 w-full">
+                                    <span className="inline-block px-2 py-1 bg-[#004fb6] text-[10px] font-bold text-white rounded mb-3">
+                                        {widget.id}
+                                    </span>
+                                    <h3 className="text-2xl font-bold text-white drop-shadow-md">
+                                        {widget.title}
+                                    </h3>
+                                    <div className="mt-4 h-1 w-0 bg-white group-hover:w-full transition-all duration-500 opacity-70" />
+                                </div>
+                            </div>
+                        )
                     ))}
                 </div>
-            );
-        }
-        }
-
-        return (
-            <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
-                <SortableContext
-                    items={categoryOrder}
-                    strategy={verticalListSortingStrategy}>
-                    <div className="space-y-12">
-                        {categoryOrder.map(category => {
-                            const group = (data as any)[category];
-                            const widgets = group?.widgets;
-
-                            if (!Array.isArray(widgets) || widgets.length === 0) {
-                                return null;
-                            }
-
-                            return (
-                                <SortableItem
-                                    key={category}
-                                    widgets={widgets}
-                                    category={category}
-                                    design={group.design}
-                                />
-                            );
-                        })}
-                        {categoryOrder.every(category => {
-                            const group = (data as any)[category];
-                            return !group?.widgets || group.widgets.length === 0;
-                        }) && (
-                            <p className="text-slate-700">Keine Widgets verfügbar.</p>
-                        )}
-                    </div>
-                </SortableContext>
-            </DndContext>
+            </div>
         );
     }
+
+    if (!data) return <div className="p-20 text-center animate-pulse text-slate-400 font-medium">Lade Dashboard...</div>;
+
+    return (
+        <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
+            <SortableContext items={categoryOrder} strategy={verticalListSortingStrategy}>
+                <div className="pb-20">
+                    {categoryOrder.map(cat => (
+                        <SortableItem key={cat} category={cat} widgets={data[cat]?.widgets || []} design={data[cat]?.design} />
+                    ))}
+                </div>
+            </SortableContext>
+        </DndContext>
+    );
+}

@@ -32,7 +32,7 @@ export async function GET(request: NextRequest){
         }
     });
     console.log("BFF Response:", response);
-    console.log("sorted: ", sortedGroups.map(g => g.category)); //falsch
+    console.log("sorted: ", sortedGroups.map(g => g.category));
     return NextResponse.json({
         ...response,
         categoryOrder: sortedGroups.map(g => g.category)
