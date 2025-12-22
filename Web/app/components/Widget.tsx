@@ -49,7 +49,7 @@ export default function Widget() {
             setCategoryOrder((items) => {
                 const oldIndex = items.indexOf(active.id as string);
                 const newIndex = items.indexOf(over.id as string);
-                const newOrder = arrayMove(items, oldIndex, newIndex); //richtig
+                const newOrder = arrayMove(items, oldIndex, newIndex);
                 sendDnD(newOrder);
                 console.log("category order:", newOrder);
                 return newOrder;

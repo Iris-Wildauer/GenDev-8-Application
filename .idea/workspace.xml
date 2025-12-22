@@ -6,14 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="61d7d928-ed36-4742-808c-d65ada6fc487" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/user/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/user/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/user/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/user/users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/app/api/bff/web/webBff.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/web/webBff.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/components/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/components/Users.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/app/components/Widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/components/Widget.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/components/socketConnection.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/components/socketConnection.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/lib/cache.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/lib/cache.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +96,7 @@
       <workItem from="1766256654509" duration="1800000" />
       <workItem from="1766312976244" duration="80000" />
       <workItem from="1766313453854" duration="27200000" />
-      <workItem from="1766394657702" duration="17099000" />
+      <workItem from="1766394657702" duration="21375000" />
     </task>
     <servers />
   </component>

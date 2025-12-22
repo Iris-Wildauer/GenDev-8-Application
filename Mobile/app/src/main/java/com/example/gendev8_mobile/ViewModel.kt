@@ -31,16 +31,17 @@ class WidgetViewModel : ViewModel() {
         viewModelScope.launch {
             _isLoading.value = true
             Log.d("WidgetViewModel", "Loading widgets...")
+            println("hallo")
             try {
                 val result = RetrofitInstance.api.getWidgets()
                 Log.d("WidgetViewModel", "API Response: $result")
                 Log.d("WidgetViewModel", "Number of categories: ${result.size}")
 
-                result.forEach { (key, group) ->
-                    Log.d("WidgetViewModel", "Category: $key, Widgets: ${group.widgets.size}")
+                val responseObj = result.filterKeys {
+                    it != "categoryOrder"
                 }
 
-                _widgets.value = result
+                _widgets.value = responseObj
                 Log.d("WidgetViewModel", "Widgets successfully set")
             } catch (e: Exception) {
                 Log.e("WidgetViewModel", "Error loading widgets: ${e.message}", e)

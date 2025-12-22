@@ -36,5 +36,11 @@ export async function GET(request: NextRequest){
     return NextResponse.json({
         ...response,
         categoryOrder: sortedGroups.map(g => g.category)
+    }, {
+        headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'GET, POST, OPTIONS',
+            'Access-Control-Allow-Headers': 'Content-Type',
+        }
     });
 }

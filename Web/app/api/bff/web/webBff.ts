@@ -25,7 +25,7 @@ export async function getInsuranceWidgets(userId: string): Promise<WidgetResult>
 
 export async function getVacationWidgets(userId: string): Promise<WidgetResult>{
     return getCached(
-        `widgets:insurance:${userId}`,
+        `widgets:vacation:${userId}`,
         async () => {
             const res = await fetch(process.env.VACATION + `?userId=${userId}`);
             return await res.json() as WidgetResult;
