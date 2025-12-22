@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="61d7d928-ed36-4742-808c-d65ada6fc487" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/web/webBff.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/web/webBff.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/.env" beforeDir="false" afterPath="$PROJECT_DIR$/Web/.env" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/vacation/vacation.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/widgets/vacation/vacation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/app/components/Widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/components/Widget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/docker-compose.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,12 +96,17 @@
       <workItem from="1766256654509" duration="1800000" />
       <workItem from="1766312976244" duration="80000" />
       <workItem from="1766313453854" duration="27200000" />
-      <workItem from="1766394657702" duration="21375000" />
+      <workItem from="1766394657702" duration="30937000" />
+      <workItem from="1766437852825" duration="49000" />
+      <workItem from="1766437911918" duration="275000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="nginx.conf" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

@@ -1,7 +1,7 @@
 function getVacationWidgets() {
     return {
         category:"Urlaub",
-        design:"style1",
+        design:"style2",
         data: [
             {
                 id: "vacation.destination_guide",
