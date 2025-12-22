@@ -2,6 +2,7 @@ const USERS = [
     {
         id: "user_1",
         username: "A",
+        widgetOrder: ["Versicherung", "Internet" , "Urlaub"],
         preferences: {
             internet: 10,
             insurance: 20,
@@ -11,18 +12,20 @@ const USERS = [
     {
         id: "user_2",
         username: "B",
+        widgetOrder: ["Urlaub", "Internet", "Versicherung"],
         preferences: {
             internet: 20,
             insurance: 10,
             vacation: 30
         }
     }
-] as const;
+];
 
 export const DEFAULT_USER = {
     id: 'default',
     username: 'guest',
     name: 'Guest User',
+    widgetOrder: ['Internet', 'Versicherung', 'Urlaub'],
     preferences: {
         internet: 10,
         insurance: 10,
@@ -43,4 +46,20 @@ export function getAllUsersNames(){
 
 export function getAllUserData(){
     return USERS;
+}
+
+export function setUserWidgets(userId: string, widgets: string[]): boolean {
+    const userIndex = USERS.findIndex(u => u.id === userId);
+
+    if (userIndex !== -1) {
+        USERS[userIndex] = {
+            ...USERS[userIndex],
+            widgetOrder: widgets
+        };
+        console.log(`Updated user ${userId}:`, widgets);
+        return true;
+    }
+
+    console.error(`${userId} not found`);
+    return false;
 }

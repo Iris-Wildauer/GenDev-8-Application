@@ -8,9 +8,10 @@ import {closestCorners, DndContext, DragEndEvent, useDraggable, useDroppable} fr
 import {useSortable,arrayMove, SortableContext, verticalListSortingStrategy } from "@dnd-kit/sortable";
 
 export default function Widget() {
-    const { user, isConnected, messages } = useSocketConnection();
+    const { user, isConnected, messages, dataChange } = useSocketConnection();
     const [data, setData] = useState<WidgetInstance[] | null>(null);
     const [categoryOrder, setCategoryOrder] = useState<string[]>([]);
+
 
 
     useEffect(() => {
@@ -18,14 +19,29 @@ export default function Widget() {
         fetch(process.env.NEXT_PUBLIC_WEBBFF)
             .then(res => res.json())
             .then(json => {
+                console.log("Fetched widget data:", json);
+                setData(json);
                 const categories = Object.keys(json);
                 setCategoryOrder(categories);
-                setData(json);
-                console.log("Loaded categories:", categories, "Data:", json);
+                console.log( "Data:", json);
+                console.log("Categories:", categories);
             })
             .catch(() => setData(null));
     }, [user]);
 
+
+    const sendDnD = async (newOrder: string[]) => {
+        return await fetch(process.env.NEXT_PUBLIC_USERS, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                method: 'setWidgetOrder',
+                categoryOrder: newOrder || categoryOrder,
+                userId: user.id,
+                socketId: socket.id
+            })
+        })
+    }
 
     function handleDragEnd(event: DragEndEvent) {
         const { active, over } = event;
@@ -33,7 +49,10 @@ export default function Widget() {
             setCategoryOrder((items) => {
                 const oldIndex = items.indexOf(active.id as string);
                 const newIndex = items.indexOf(over.id as string);
-                return arrayMove(items, oldIndex, newIndex);
+                const newOrder = arrayMove(items, oldIndex, newIndex); //richtig
+                sendDnD(newOrder);
+                console.log("category order:", newOrder);
+                return newOrder;
             });
         }
     }
@@ -117,8 +136,7 @@ export default function Widget() {
         <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
             <SortableContext
                 items={categoryOrder}
-                strategy={verticalListSortingStrategy}
-            >
+                strategy={verticalListSortingStrategy}>
                 <div className="space-y-12">
                     {categoryOrder.map(category => {
                         const group = (data as any)[category];

@@ -26,6 +26,7 @@ export function Usernames() {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
+                method: 'setUser',
                 id: selectedUsername.id,
                 username: selectedUsername.username,
                 preferences: selectedUsername.preferences,

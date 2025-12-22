@@ -5,6 +5,7 @@ export function useSocketConnection(){
 const [isConnected, setIsConnected] = useState(false);
 const [messages, setMessages] = useState([]);
 const [user, setUser] = useState(null);
+const [dataChange, setDataChange] = useState(0);
 
 useEffect(() => {
     function onConnect() {
@@ -23,18 +24,24 @@ useEffect(() => {
         setUser(user);
     }
 
+    function onOrderChange(order){
+        setDataChange((prev) => prev + 1);
+    }
+
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
     socket.on("server-message", onServerMessage);
-    socket.on("user-change", onUserChange)
+    socket.on("user-change", onUserChange);
+    socket.on("widget-order-changed", onOrderChange);
 
     return () => {
         socket.off("connect", onConnect);
         socket.off("disconnect", onDisconnect);
         socket.off("server-message", onServerMessage);
-        socket.off("user-change", onUserChange)
+        socket.off("user-change", onUserChange);
+        socket.off("widget-order-changed", onOrderChange);
     };
 }, []);
 
-return { user, isConnected, messages}
+return { user, isConnected, messages, dataChange}
 }

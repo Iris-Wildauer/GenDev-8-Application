@@ -54,10 +54,6 @@ export async function getWidgets(userId) {
                 const results: WidgetResult[] = await Promise.all(
                     WidgetProviders.map(p => p.provider(userId))
                 );
-
-
-                console.log("HI HELLO HIER RESULTS")
-            console.log(results)
             return results;
         },
         300

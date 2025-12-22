@@ -3,46 +3,38 @@ import {getWidgets} from "./webBff"
 import {getCached} from '../../../../lib/cache';
 import {getAuthenticatedUser} from "../../../../lib/auth";
 import {WidgetCategory} from "../../../../lib/widgetDefinitions";
+import {currentUser} from "../user/route";
+import {DEFAULT_USER, getUserById} from "../user/users";
 
 
 export async function GET(request: NextRequest){
     const user = await getAuthenticatedUser(request);
+    const fullUser = getUserById(user.id) ?? DEFAULT_USER;
     const results =  await getWidgets(user.id)
-    console.log("HELLO HI HIER NOCHMAL :)")
-    console.log(results)
 
-    const preferences = await getCached(
-        `preferences:${user.id}`,
-        async () => user.preferences ?? { internet: 10, insurance: 10, vacation: 10 },
-        3600
-    );
-    const widgetGroups = results
-        .map(result => ({
-            category: result.category,
-            widgets: result.data,
-            priority:
-                result.category === 'Internet'
-                    ? preferences.internet
-                    : result.category === 'Versicherung'
-                        ? preferences.insurance
-                        : result.category === 'Urlaub'
-                            ? preferences.vacation
-                        : 0,
-            design: result.design
-        }))
-        .filter(result => result.priority > 0)
-        .sort((a, b) => b.priority - a.priority);
+    const widgetOrder = fullUser.widgetOrder ?? ['Internet', 'Versicherung', 'Urlaub'];
+
+    console.log("widgetOrder", user.widgetOrder)
+    console.log(user)
+    console.log("fullUser", fullUser)
+
+
+    const sortedGroups = widgetOrder
+        .map(category => results.find(group => group.category === category))
+        .filter(Boolean);
 
     const response: Record<string, any> = {};
 
-    widgetGroups.forEach(group => {
+    sortedGroups.forEach((group) => {
         response[group.category as string] = {
-            widgets: group.widgets,
-            priority: group.priority,
+            widgets: group.data,
             design: group.design
         }
     });
-    console.log("die endgültigen widgets")
-    console.log(response)
-    return NextResponse.json(response);
+    console.log("BFF Response:", response);
+    console.log("sorted: ", sortedGroups.map(g => g.category)); //falsch
+    return NextResponse.json({
+        ...response,
+        categoryOrder: sortedGroups.map(g => g.category)
+    });
 }
