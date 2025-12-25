@@ -14,8 +14,9 @@ jobs:
           script: |
             cd ..
             cd /var/www/GenDev-8-Application/Web
-            docker-compose down
-            docker-compose pull
-            docker-compose up -d --build
+            docker compose down
+            docker compose pull
+            docker compose build
+            docker compose up
             docker system prune -f
 
