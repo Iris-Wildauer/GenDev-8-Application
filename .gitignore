@@ -1,6 +1,7 @@
 node_modules/
 .next/
 .env
+docker-compose.yml
 Mobile/.gradle
 Mobile/.idea
 Mobile/.kotlin

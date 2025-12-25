@@ -19,7 +19,7 @@ export default function Widget() {
             .then(res => res.json())
             .then(json => {
                 setData(json);
-                setCategoryOrder(Object.keys(json));
+                setCategoryOrder(Object.keys(json).filter(key => key !== 'categoryOrder'));
             })
             .catch(() => setData(null));
     }, [user]);

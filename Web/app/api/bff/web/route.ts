@@ -21,7 +21,6 @@ export async function GET(request: NextRequest){
 
     const sortedGroups = widgetOrder
         .map(category => results.find(group => group.category === category))
-        .filter(item => item.category != 'categoryOrder')
         .filter(Boolean);
 
     const response: Record<string, any> = {};
