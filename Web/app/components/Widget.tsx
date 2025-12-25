@@ -124,7 +124,21 @@ export default function Widget() {
         );
     }
 
-    if (!data) return <div className="p-20 text-center animate-pulse text-slate-400 font-medium">Lade Dashboard...</div>;
+    if (!data) {
+        return (
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {[1, 2, 3].map((_, index) => (
+                    <div
+                        key={index}
+                        className="rounded-lg bg-white p-4 shadow-sm border space-y-3 animate-pulse">
+                        <div className="h-5 w-1/2 bg-slate-200 rounded" />
+                        <div className="h-4 w-full bg-slate-200 rounded" />
+                        <div className="h-4 w-3/4 bg-slate-200 rounded" />
+                    </div>
+                ))}
+            </div>
+        );
+    }
 
     return (
         <DndContext collisionDetection={closestCorners} onDragEnd={handleDragEnd}>
