@@ -6,17 +6,17 @@ function getVacationWidgets() {
             {
                 id: "vacation.destination_guide",
                 title: "Reiseführer für Reiseziele",
-                picture: "images/cat_on_beach.jpg"
+                picture: "images/urlaub1.jpg"
             },
             {
                 id: "vacation.travel_tips",
                 title: "Reisetipps und Empfehlungen",
-                picture: "images/mies_am_chillen.jpg"
+                picture: "images/urlaub2.jpg"
             },
             {
                 id: "vacation.package_comparison",
                 title: "Pauschalangebote vergleichen",
-                picture: "images/vacation_cat.jpg"
+                picture: "images/urlaub3.jpg"
             }
         ]
     }

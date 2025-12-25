@@ -6,17 +6,17 @@ function getInsuranceWidgets() {
             {
                 id: "insurance.policy_review",
                 title: "Versicherungsvertrag überprüfen",
-                picture: "images/530.jpg"
+                picture: "images/versicherung1.jpg"
             },
             {
                 id: "insurance.claim_assistance",
                 title: "Unterstützung bei Schadensfällen",
-                picture: "images/202.jpg"
+                picture: "images/versicherung2.jpg"
             },
             {
                 id: "insurance.providers_comparison",
                 title: "Versicherungsanbieter vergleichen",
-                picture: "images/303.jpg"
+                picture: "images/versicherung3.jpg"
             }
         ]
     }

@@ -6,17 +6,17 @@ function getInternetWidgets(){
             {
                 id: "internet.contract_update",
                 title: "Internetvertrag optimieren",
-                picture: "images/200.jpg"
+                picture: "images/internet1.jpg"
             },
             {
                 id:"internet.speed_test",
                 title:"Internetgeschwindigkeit testen",
-                picture: "images/500.jpg"
+                picture: "images/internet2.jpg"
             },
             {
                 id:"internet.providers_comparison",
                 title:"Internetanbieter vergleichen",
-                picture: "images/599.jpg"
+                picture: "images/internet3.jpg"
             },
         ]
     }

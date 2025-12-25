@@ -17,8 +17,6 @@ function TopBar() {
                     </div>
                     <nav className="hidden lg:flex gap-6 text-sm font-semibold text-slate-500">
                         <span className="text-[#004fb6] border-b-2 border-[#004fb6] pb-1 cursor-default">Dashboard</span>
-                        <span className="hover:text-slate-800 cursor-pointer transition-colors">Widgets</span>
-                        <span className="hover:text-slate-800 cursor-pointer transition-colors">Einstellungen</span>
                     </nav>
                 </div>
 

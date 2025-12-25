@@ -1,7 +1,7 @@
 const USERS = [
     {
         id: "user_1",
-        username: "A",
+        username: "Mia",
         widgetOrder: ["Versicherung", "Internet" , "Urlaub"],
         preferences: {
             internet: 10,
@@ -11,7 +11,7 @@ const USERS = [
     },
     {
         id: "user_2",
-        username: "B",
+        username: "John",
         widgetOrder: ["Urlaub", "Internet", "Versicherung"],
         preferences: {
             internet: 20,
@@ -23,7 +23,7 @@ const USERS = [
 
 export const DEFAULT_USER = {
     id: 'default',
-    username: 'guest',
+    username: 'Gast',
     name: 'Guest User',
     widgetOrder: ['Internet', 'Versicherung', 'Urlaub'],
     preferences: {

@@ -6,63 +6,24 @@
   <component name="ChangeListManager">
     <list default="true" id="61d7d928-ed36-4742-808c-d65ada6fc487" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/proguard-rules.pro" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/androidTest/java/com/example/gendev8_mobile/ExampleInstrumentedTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/AndroidManifest.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ApiService.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/MainActivity.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/SocketManager.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/TopBar.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetCard.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetCategory.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetGroup.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetInstance.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetScreen.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ui/theme/Color.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ui/theme/Theme.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ui/theme/Type.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/drawable/ic_launcher_background.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/drawable/ic_launcher_foreground.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-hdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-hdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-mdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-mdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-xhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-xxhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/values/colors.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/values/strings.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/values/themes.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/xml/backup_rules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/xml/data_extraction_rules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/res/xml/network_security_config.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/test/java/com/example/gendev8_mobile/ExampleUnitTest.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/gradle/libs.versions.toml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/settings.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/insurance/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/widgets/insurance/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/internet/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/widgets/internet/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/vacation/server.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/widgets/vacation/server.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/components/Widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/components/Widget.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/user/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/user/users.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/insurance/insurance.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/widgets/insurance/insurance.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/internet/internet.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/widgets/internet/internet.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/200.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/202.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/303.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/500.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/530.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/599.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/cat.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/cat2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/cat3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/cat_on_beach.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/mies_am_chillen.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/media-service/images/vacation_cat.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/widgets/vacation/vacation.js" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/widgets/vacation/vacation.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/layout.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Web/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Web/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/page.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +31,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="78" />
+    <option name="cachedIndexableFilesCount" value="1177" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -158,7 +119,8 @@
       <workItem from="1766313453854" duration="27200000" />
       <workItem from="1766394657702" duration="30937000" />
       <workItem from="1766437852825" duration="49000" />
-      <workItem from="1766437911918" duration="5306000" />
+      <workItem from="1766437911918" duration="5395000" />
+      <workItem from="1766685057075" duration="2133000" />
     </task>
     <servers />
   </component>
