@@ -23,15 +23,15 @@ export function Usernames() {
       .catch((err) => console.error("Failed to load users:", err));
   }, []);
 
-  const sendUser = async () => {
+  const sendUser = async (user) => {
     return await fetch(process.env.NEXT_PUBLIC_USERS, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         method: "setUser",
-        id: selectedUsername.id,
-        username: selectedUsername.username,
-        preferences: selectedUsername.preferences,
+        id: user.id,
+        username: user.username,
+        preferences: user.preferences,
         socketId: socket.id,
       }),
     });
@@ -39,7 +39,7 @@ export function Usernames() {
 
   const handleUserChange = (user) => {
     setUser(user);
-    sendUser();
+    sendUser(user);
   };
 
   /*

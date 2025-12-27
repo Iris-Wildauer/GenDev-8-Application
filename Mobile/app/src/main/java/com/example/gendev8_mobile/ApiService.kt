@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 interface ApiService {
     @GET("api/bff/web")
-    suspend fun getWidgets(): Map<String, WidgetGroup>
+    suspend fun getWidgets(): WidgetResponse
 
     @GET("api/bff/user")
     suspend fun getAllUsers(): UserResponse

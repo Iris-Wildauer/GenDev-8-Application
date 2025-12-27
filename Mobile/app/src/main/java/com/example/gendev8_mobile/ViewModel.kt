@@ -14,6 +14,9 @@ class WidgetViewModel : ViewModel() {
     private val _widgets = MutableStateFlow<Map<String, WidgetGroup>?>(null)
     val widgets: StateFlow<Map<String, WidgetGroup>?> = _widgets
 
+    private val _categoryOrder = MutableStateFlow<List<String>>(emptyList())
+    val categoryOrder: StateFlow<List<String>> = _categoryOrder
+
     private val _users = MutableStateFlow<List<User>>(emptyList())
     val users: StateFlow<List<User>> = _users
 
@@ -25,6 +28,7 @@ class WidgetViewModel : ViewModel() {
 
     private val _currentUser = MutableStateFlow<User?>(null)
     val currentUser: StateFlow<User?> = _currentUser
+
 
     init {
         Log.d("WidgetViewModel", "ViewModel initialized")
@@ -40,18 +44,18 @@ class WidgetViewModel : ViewModel() {
             Log.d("WidgetViewModel", "Loading widgets...")
             try {
                 val result = RetrofitInstance.api.getWidgets()
-                Log.d("WidgetViewModel", "API Response: $result")
-                Log.d("WidgetViewModel", "Number of categories: ${result.size}")
+                _widgets.value = result.widgets
+                _categoryOrder.value = result.categoryOrder
 
-                val order = (result["categoryOrder"] as? List<String>) ?: emptyList()
+                Log.d("WidgetViewModel", "Widgets: ${result.widgets.keys}")
+                Log.d("WidgetViewModel", "Order: ${result.categoryOrder}")
 
-
-                val responseObj = result.filterKeys {
+                val responseObj = _widgets.value?.filterKeys {
                     it != "categoryOrder"
                 }
 
-                val widgetsMap = result.filterKeys { it != "categoryOrder" }
-                    .mapValues { (_, value) ->
+                val widgetsMap = _widgets.value?.filterKeys { it != "categoryOrder" }
+                    ?.mapValues { (_, value) ->
                         value
                     }
 
@@ -72,12 +76,13 @@ class WidgetViewModel : ViewModel() {
     fun loadUsers() {
         viewModelScope.launch {
             try {
-                Log.d("WidgetViewModel", "Loading users...")
                 val result = RetrofitInstance.api.getAllUsers()
                 Log.d("WidgetViewModel", "API Response: $result")
                 _selectedUser.value = result.currentUser
                 _users.value = result.allUsers
                 _currentUser.value = result.currentUser
+                Log.d("WidgetViewModel", result.currentUser.toString())
+                Log.d("WidgetViewModel", "Users: ${result.allUsers.map { it.username }}")
             } catch (e: Exception) {
                 Log.e("WidgetViewModel", "Error loading users", e)
                 _users.value = emptyList()
