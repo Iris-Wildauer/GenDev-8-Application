@@ -7,11 +7,10 @@ data class WidgetInstance(
     val category: String,
 )
 
-
 data class User(
     val id: String,
     val username: String,
-    val preferences: Map<String, Int>?
+    val widgetOrder: List<String>,
 )
 
 data class UserResponse(

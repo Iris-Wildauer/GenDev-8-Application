@@ -27,9 +27,9 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("String", "LOCALHOST", "\"http://10.0.2.2:8080/\"")
-            buildConfigField("String", "PICTURE", "\"http://10.0.2.2:8082/\"")
-
+            buildConfigField("String", "BFF", "\"https://iris-wildauer.de/api/bff/web\"")
+            buildConfigField("String", "PICTURE", "\"https://iris-wildauer.de/api/widgets/media-serivce\"")
+            buildConfigField("String", "BASE_URL", "\"https://iris-wildauer.de\"")
         }
         release {
             isMinifyEnabled = false

@@ -77,7 +77,6 @@ class WidgetViewModel : ViewModel() {
                 val requestBody = mapOf(
                     "id" to user.id,
                     "username" to user.username,
-                    "preferences" to user.preferences
                 )
                 Log.d("WidgetViewModel", "Sending user data: $requestBody")
 

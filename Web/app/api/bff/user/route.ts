@@ -55,10 +55,7 @@ export async function POST(request: NextRequest) {
         if (body.method === 'setWidgetOrder') {
             const { categoryOrder, userId, socketId } = body;
 
-            const cleanOrder = categoryOrder.filter(item => item !== 'categoryOrder');
-            console.log("Clean order:", cleanOrder);
-
-            const success: boolean = setUserWidgets(userId, cleanOrder);
+            const success: boolean = setUserWidgets(userId, categoryOrder);
 
             if (success) {
                 await invalidateCache(`preferences:${userId}`);

@@ -3,21 +3,11 @@ const USERS = [
         id: "user_1",
         username: "Mia",
         widgetOrder: ["Versicherung", "Internet" , "Urlaub"],
-        preferences: {
-            internet: 10,
-            insurance: 20,
-            vacation: 5
-        }
     },
     {
         id: "user_2",
         username: "John",
         widgetOrder: ["Urlaub", "Internet", "Versicherung"],
-        preferences: {
-            internet: 20,
-            insurance: 10,
-            vacation: 30
-        }
     }
 ];
 
@@ -26,11 +16,6 @@ export const DEFAULT_USER = {
     username: 'Gast',
     name: 'Guest User',
     widgetOrder: ['Internet', 'Versicherung', 'Urlaub'],
-    preferences: {
-        internet: 10,
-        insurance: 10,
-        vacation: 10
-    }
 };
 
 export function getUserById(id: string){

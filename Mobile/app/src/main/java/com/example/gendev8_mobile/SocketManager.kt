@@ -32,7 +32,7 @@ object SocketManager {
             onUserChangeCallback = onUserChange
 
             try {
-                socket = IO.socket("http://10.0.2.2:3000")
+                socket = IO.socket(BuildConfig.BASE_URL)
             } catch (e: URISyntaxException) {
                 Log.e(TAG, "URISyntaxException: ${e.reason}")
                 return
