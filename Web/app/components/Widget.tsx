@@ -25,9 +25,9 @@ export default function Widget() {
     fetch(process.env.NEXT_PUBLIC_WEBBFF!)
       .then((res) => res.json())
       .then((json) => {
-        setData(json);
+        setData(json.widgets);
         setCategoryOrder(
-          Object.keys(json).filter((key) => key !== "categoryOrder"),
+          Object.keys(json.widgets).filter((key) => key !== "categoryOrder"),
         );
       })
       .catch(() => setData(null));
