@@ -25,7 +25,7 @@ import coil.request.ImageRequest
 @Composable
 fun WidgetCard(
     widget: WidgetInstance,
-    onClick: () -> Unit
+    onClick: () -> Unit,
 ) {
     var isHovered by remember { mutableStateOf(false) }
     val scale by animateFloatAsState(if (isHovered) 1.05f else 1.0f)

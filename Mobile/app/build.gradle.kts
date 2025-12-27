@@ -6,9 +6,7 @@ plugins {
 
 android {
     namespace = "com.example.gendev8_mobile"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.gendev8_mobile"
@@ -29,7 +27,7 @@ android {
         debug {
             buildConfigField("String", "BFF", "\"https://iris-wildauer.de/api/bff/web\"")
             buildConfigField("String", "PICTURE", "\"https://iris-wildauer.de/api/widgets/media-service/\"")
-            buildConfigField("String", "BASE_URL", "\"https://iris-wildauer.de\"")
+            buildConfigField("String", "BASE_URL", "\"https://iris-wildauer.de/\"")
         }
         release {
             isMinifyEnabled = false
@@ -45,9 +43,6 @@ android {
     }
     kotlinOptions {
         jvmTarget = "11"
-    }
-    buildFeatures {
-        compose = true
     }
 }
 
@@ -78,6 +73,8 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
+    implementation("sh.calvin.reorderable:reorderable:2.5.1")
+
     // Coil für Bilder
     implementation("io.coil-kt:coil-compose:2.5.0")
 
@@ -86,4 +83,15 @@ dependencies {
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
+
+    // Compose UI & Foundation
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.foundation:foundation:1.7.6")
+
+    // Material 3
+    implementation("androidx.compose.material3:material3")
+
+    // Icons
+    implementation("androidx.compose.material:material-icons-core")
+    implementation("androidx.compose.material:material-icons-extended")
 }

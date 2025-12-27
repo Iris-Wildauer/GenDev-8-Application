@@ -1,6 +1,9 @@
 package com.example.gendev8_mobile
 
 import android.util.Log
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,12 +23,38 @@ class WidgetViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading
 
+    var draggedWidget by mutableStateOf<WidgetInstance?>(null)
+        private set
+
+    var dropTargetWidget by mutableStateOf<WidgetInstance?>(null)
+        private set
+
     init {
         Log.d("WidgetViewModel", "ViewModel initialized")
         loadUsers()
         loadWidgets()
         SocketManager.connect { loadWidgets() }
     }
+
+    fun onDragStart(widget: WidgetInstance) {
+        draggedWidget = widget
+    }
+
+    fun onDragEnd() {
+        draggedWidget = null
+        dropTargetWidget = null
+    }
+
+    fun onDragEnter(targetWidget: WidgetInstance) {
+        if (draggedWidget != targetWidget) {
+            dropTargetWidget = targetWidget
+        }
+    }
+
+    fun onDragExit() {
+        dropTargetWidget = null
+    }
+
 
     fun loadWidgets() {
         viewModelScope.launch {

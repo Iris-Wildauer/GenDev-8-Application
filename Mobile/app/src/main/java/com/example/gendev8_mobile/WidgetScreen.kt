@@ -1,6 +1,7 @@
 package com.example.gendev8_mobile
 
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,11 +12,16 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.DragHandle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
+import sh.calvin.reorderable.ReorderableItem
+import sh.calvin.reorderable.rememberReorderableLazyListState
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun WidgetScreen(
     widgets: Map<String, WidgetGroup>?,
@@ -50,62 +56,79 @@ fun WidgetScreen(
         }
 
         widgets != null && widgets.isNotEmpty() -> {
-            LazyColumn(
-                contentPadding = PaddingValues(vertical = 16.dp),
-                verticalArrangement = Arrangement.spacedBy(24.dp)
-            ) {
-                widgets.forEach { (category, group) ->
-                    if (group.widgets.isNotEmpty()) {
-                        if (group.design == "style1") {
-                            item {
-                                Column {
-                                    Text(
-                                        text = category,
-                                        style = MaterialTheme.typography.titleLarge,
-                                        modifier = Modifier.padding(
-                                            horizontal = 16.dp,
-                                            vertical = 8.dp
-                                        ),
-                                        color = Color(0xFF1e293b),
-                                        fontWeight = FontWeight.Bold
-                                    )
+            val lazyListState = rememberLazyListState()
+            var widgetsList by remember { mutableStateOf(widgets.toList()) }
 
-                                    LazyRow(
-                                        contentPadding = PaddingValues(horizontal = 16.dp),
-                                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                                    ) {
-                                        items(group.widgets) { widget ->
-                                            WidgetCard(
-                                                widget = widget,
-                                                onClick = { onWidgetClick(widget) }
-                                            )
-                                        }
-                                    }
-                                }
-                            }
-                        } else if (group.design == "style2") {
-                            item(key = "style2-$category") {
-                                Column(
+            val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
+                widgetsList = widgetsList.toMutableList().apply {
+                    add(to.index, removeAt(from.index))
+                }
+            }
+            LazyColumn(
+                state = lazyListState,
+                contentPadding = PaddingValues(vertical = 16.dp),
+                verticalArrangement = Arrangement.spacedBy(24.dp),
+            ) {
+                items(
+                    count = widgetsList.size,
+                    key = { index ->
+                        val (category, group) = widgetsList[index]
+                        "${group.design}-$category"
+                    }
+                ) { index ->
+                    val (category, group) = widgetsList[index]
+
+                    if (group.widgets.isNotEmpty()) {
+                        ReorderableItem(
+                            reorderableLazyListState,
+                            key = "${group.design}-$category"
+                        ) { isDragging ->
+                            Column(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .background(
+                                        if (isDragging) Color(0xFFf1f5f9) else Color.Transparent
+                                    )
+                            ) {
+                                Row(
                                     modifier = Modifier
                                         .fillMaxWidth()
+                                        .padding(horizontal = 16.dp, vertical = 8.dp),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
                                         text = category,
                                         style = MaterialTheme.typography.titleLarge,
-                                        modifier = Modifier.padding(horizontal = 16.dp, vertical = 8.dp),
                                         color = Color(0xFF1e293b),
                                         fontWeight = FontWeight.Bold
                                     )
-                                    LazyRow(
-                                        contentPadding = PaddingValues(horizontal = 16.dp),
-                                        horizontalArrangement = Arrangement.spacedBy(12.dp)
-                                        ) {
-                                            items(group.widgets, key = { it.id }) { widget ->
-                                                WidgetCard2(
-                                                    widget = widget,
-                                                    onClick = { onWidgetClick(widget) }
-                                                )
-                                            }
+
+                                    Icon(
+                                        imageVector = Icons.Default.DragHandle,
+                                        contentDescription = "Reorder",
+                                        modifier = Modifier
+                                            .draggableHandle()
+                                            .padding(8.dp),
+                                        tint = Color(0xFF64748b)
+                                    )
+                                }
+
+                                LazyRow(
+                                    contentPadding = PaddingValues(horizontal = 16.dp),
+                                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                                ) {
+                                    items(group.widgets, key = { it.id }) { widget ->
+                                        if (group.design == "style1") {
+                                            WidgetCard(
+                                                widget = widget,
+                                                onClick = { onWidgetClick(widget) }
+                                            )
+                                        } else {
+                                            WidgetCard2(
+                                                widget = widget,
+                                                onClick = { onWidgetClick(widget) }
+                                            )
                                         }
                                     }
                                 }
@@ -114,6 +137,7 @@ fun WidgetScreen(
                     }
                 }
             }
+        }
 
         else -> {
             Box(
