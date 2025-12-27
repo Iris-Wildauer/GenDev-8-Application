@@ -31,7 +31,7 @@ export async function POST(request: NextRequest) {
   console.log("[POST /user] Received:", body);
 
   if (body.method === "setUser") {
-    if (body.username || body.socketId) {
+    if (body.username) {
       currentUser = body;
       console.log("[POST /user] Updated currentUser to:", currentUser.username);
 
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     }
   } else if (body.method === "setWidgetOrder") {
     if (body.method === "setWidgetOrder") {
-      const { categoryOrder, userId, socketId } = body;
+      const { categoryOrder, userId } = body;
 
       const success: boolean = setUserWidgets(userId, categoryOrder);
 

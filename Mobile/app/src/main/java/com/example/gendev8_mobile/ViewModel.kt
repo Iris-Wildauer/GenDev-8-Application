@@ -30,6 +30,7 @@ class WidgetViewModel : ViewModel() {
         Log.d("WidgetViewModel", "ViewModel initialized")
         loadUsers()
         loadWidgets()
+        SocketManager.setUserChangeCallback { onUserChange() }
         SocketManager.connect { loadWidgets() }
     }
 
@@ -103,5 +104,13 @@ class WidgetViewModel : ViewModel() {
         super.onCleared()
         SocketManager.disconnect()
         Log.d("WidgetViewModel", "ViewModel cleared, socket disconnected")
+    }
+
+    private fun onUserChange() {
+        Log.d("WidgetViewModel", "User change detected, reloading data...")
+        viewModelScope.launch {
+            loadUsers()
+            loadWidgets()
+        }
     }
 }
