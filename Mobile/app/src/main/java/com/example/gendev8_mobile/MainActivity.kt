@@ -54,12 +54,7 @@ class MainActivity : ComponentActivity() {
                             widgets = widgets,
                             isLoading = isLoading,
                             currentUser = selectedUser,
-                            onWidgetClick = { widget ->
-                                widget.link?.let { link ->
-                                    val intent = Intent(Intent.ACTION_VIEW, link.toUri())
-                                    startActivity(intent)
-                                }
-                            }
+                            onWidgetClick = {},
                         )
                     }
                 }

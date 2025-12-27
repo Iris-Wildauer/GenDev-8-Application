@@ -37,6 +37,12 @@ export function Usernames() {
     });
   };
 
+  const handleUserChange = (user) => {
+    setUser(user);
+    sendUser();
+  };
+
+  /*
   useEffect(() => {
     if (!selectedUsername) {
       console.log("Kein Username ausgewählt");
@@ -45,7 +51,9 @@ export function Usernames() {
     sendUser().then((response) => {
       console.log("Empfangene Daten:", response);
     });
-  }, [selectedUsername]);
+  }, []);
+
+   */
 
   useEffect(() => {
     if (user && user.id !== selectedUsername?.id) {
@@ -64,7 +72,7 @@ export function Usernames() {
         <div className="absolute right-0 mt-2 w-48 bg-white text-black rounded-md shadow-lg py-1 z-10">
           {allUsers.map((user) => (
             <button
-              onClick={() => setUser(user)}
+              onClick={() => handleUserChange(user)}
               key={user.id}
               className="block w-full text-left px-4 py-2 hover:bg-gray-100"
             >

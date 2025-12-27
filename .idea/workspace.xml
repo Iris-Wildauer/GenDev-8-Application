@@ -6,6 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="61d7d928-ed36-4742-808c-d65ada6fc487" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetInstance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetInstance.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Web/app/components/Users.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/components/Users.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -109,7 +113,7 @@
       <workItem from="1766437911918" duration="5395000" />
       <workItem from="1766685057075" duration="2133000" />
       <workItem from="1766783947017" duration="4479000" />
-      <workItem from="1766831376083" duration="11857000" />
+      <workItem from="1766831376083" duration="13962000" />
     </task>
     <task id="LOCAL-00001">
       <option name="closed" value="true" />

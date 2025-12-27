@@ -37,7 +37,7 @@ export async function GET(request: NextRequest) {
   return NextResponse.json(
     {
       ...response,
-      //categoryOrder: sortedGroups.map((g) => g.category),
+      categoryOrder: sortedGroups.map((g) => g.category),
     },
     {
       headers: {

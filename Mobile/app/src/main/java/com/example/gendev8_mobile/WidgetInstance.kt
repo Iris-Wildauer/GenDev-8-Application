@@ -7,6 +7,11 @@ data class WidgetInstance(
     val category: String,
 )
 
+data class WidgetResponse(
+    val widgets: Map<String, WidgetGroup>,
+    val categoryOrder: List<String>
+)
+
 data class User(
     val method: String,
     val id: String,

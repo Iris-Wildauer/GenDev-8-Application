@@ -43,9 +43,17 @@ class WidgetViewModel : ViewModel() {
                 Log.d("WidgetViewModel", "API Response: $result")
                 Log.d("WidgetViewModel", "Number of categories: ${result.size}")
 
+                val order = (result["categoryOrder"] as? List<String>) ?: emptyList()
+
+
                 val responseObj = result.filterKeys {
                     it != "categoryOrder"
                 }
+
+                val widgetsMap = result.filterKeys { it != "categoryOrder" }
+                    .mapValues { (_, value) ->
+                        value
+                    }
 
                 _widgets.value = responseObj
                 Log.d("WidgetViewModel", "Widgets successfully set")
