@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
       currentUser = body;
       console.log("[POST /user] Updated currentUser to:", currentUser.username);
 
-      if (globalThis.socketIO && body.socketId) {
+      if (globalThis.socketIO) {
         /*
         globalThis.socketIO.to(body.socketId).emit("user-change", currentUser);
         console.log(`[Socket.io] ${body.socketId}`);
