@@ -25,6 +25,8 @@ class MainActivity : ComponentActivity() {
                 val users by viewModel.users.collectAsState()
                 val selectedUser by viewModel.selectedUser.collectAsState()
                 val isLoading by viewModel.isLoading.collectAsState()
+                val allUsers by viewModel.users.collectAsState()
+
 
                 LaunchedEffect(Unit) {
                     viewModel.loadUsers()
@@ -53,6 +55,7 @@ class MainActivity : ComponentActivity() {
                         WidgetScreen(
                             widgets = widgets,
                             isLoading = isLoading,
+                            allUsers = allUsers,
                             currentUser = selectedUser,
                             onWidgetClick = {},
                         )

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { socket } from "../../socket";
 import { useSocketConnection } from "./socketConnection";
 
@@ -15,7 +15,7 @@ export function Usernames() {
       .then((json) => {
         setAllUsers(json.allUsers || json);
 
-        if (json.currentUser) {
+        if (json.currentUser && !selectedUsername) {
           setUser(json.currentUser);
         }
         console.log("Loaded users:", json);
@@ -37,10 +37,15 @@ export function Usernames() {
     });
   };
 
-  const handleUserChange = (user) => {
+  async function handleUserChange(user) {
     setUser(user);
-    sendUser(user);
-  };
+    try {
+      await sendUser(user);
+    } catch (err) {
+      console.error("User update failed, rolling back");
+      setUser(selectedUsername);
+    }
+  }
 
   /*
   useEffect(() => {

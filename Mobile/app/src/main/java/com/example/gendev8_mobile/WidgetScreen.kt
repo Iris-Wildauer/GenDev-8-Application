@@ -28,9 +28,12 @@ fun WidgetScreen(
     widgets: Map<String, WidgetGroup>?,
     isLoading: Boolean,
     currentUser: User? = null,
-    onWidgetClick: (WidgetInstance) -> Unit
+    allUsers: List<User> = emptyList(),
+    onWidgetClick: (WidgetInstance) -> Unit,
 ) {
     println("Frontend" + widgets)
+    val userWithOrder = allUsers.find { it.id == currentUser?.id } ?: currentUser
+    println("User with order: ${userWithOrder?.widgetOrder}")
     when {
         isLoading -> {
             LazyColumn(
@@ -60,12 +63,11 @@ fun WidgetScreen(
 
         widgets != null && widgets.isNotEmpty() -> {
             val lazyListState = rememberLazyListState()
-            var widgetsList by remember { mutableStateOf(sortWidgetsByUserOrder(widgets, currentUser)) }
+            var widgetsList by remember { mutableStateOf(sortWidgetsByUserOrder(widgets, userWithOrder)) }
 
-            LaunchedEffect(widgets) {
-                widgetsList = sortWidgetsByUserOrder(widgets, currentUser)
+            LaunchedEffect(widgets, userWithOrder?.widgetOrder) {
+                widgetsList = sortWidgetsByUserOrder(widgets, userWithOrder)
             }
-
             val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
                 widgetsList = widgetsList.toMutableList().apply {
                     add(to.index, removeAt(from.index))
@@ -195,13 +197,23 @@ fun sortWidgetsByUserOrder(
     widgets: Map<String, WidgetGroup>,
     currentUser: User?
 ): List<Pair<String, WidgetGroup>> {
-    val order = currentUser?.widgetOrder ?: emptyList()
+    val order = currentUser?.widgetOrder
 
-    return if (order.isNotEmpty()) {
-        order.mapNotNull { category ->
-            widgets[category]?.let { category to it }
+    return when {
+        // Wenn widgetOrder vorhanden ist, sortiere danach
+        !order.isNullOrEmpty() -> {
+            // Erstelle eine Map für schnellen Zugriff
+            val widgetsByCategory = widgets.toMap()
+
+            // Mappe die Order auf die entsprechenden Widgets
+            // mapNotNull filtert automatisch null-Werte heraus
+            order.mapNotNull { category ->
+                widgetsByCategory[category]?.let { group ->
+                    category to group
+                }
+            }
         }
-    } else {
-        widgets.toList()
+        // Fallback: Verwende die Original-Reihenfolge
+        else -> widgets.toList()
     }
 }
