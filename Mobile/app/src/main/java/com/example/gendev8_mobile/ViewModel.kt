@@ -34,8 +34,8 @@ class WidgetViewModel : ViewModel() {
         Log.d("WidgetViewModel", "ViewModel initialized")
         loadUsers()
         loadWidgets()
-        SocketManager.setUserChangeCallback { onUserChange() }
         SocketManager.setWidgetChangeCallback { loadWidgets() }
+        SocketManager.setUserChangeCallback { onUserChange() }
         SocketManager.connect { loadWidgets() }
     }
 

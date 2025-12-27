@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { socket } from "../../socket";
 
 export function useSocketConnection() {
@@ -6,7 +6,6 @@ export function useSocketConnection() {
   const [messages, setMessages] = useState([]);
   const [user, setUser] = useState(null);
   const [dataChange, setDataChange] = useState(0);
-  const userUpdateResolvers = useRef([]);
 
   useEffect(() => {
     function onConnect() {
@@ -23,32 +22,10 @@ export function useSocketConnection() {
 
     function onUserChange(user) {
       setUser(user);
-
-      userUpdateResolvers.current.forEach((resolve) => resolve(user));
-      userUpdateResolvers.current = [];
     }
 
-    async function onOrderChange(order) {
+    function onOrderChange(order) {
       console.log("widgetOrderUpdated:", order);
-      let currentUser = user;
-      if (!currentUser) {
-        console.log("Waiting for user update before processing order...");
-
-        currentUser = await new Promise((resolve) => {
-          userUpdateResolvers.current.push(resolve);
-
-          setTimeout(() => {
-            const index = userUpdateResolvers.current.indexOf(resolve);
-            if (index > -1) {
-              userUpdateResolvers.current.splice(index, 1);
-              console.warn("User update timeout, processing order anyway");
-              resolve(null);
-            }
-          }, 5000);
-        });
-      }
-
-      console.log("Processing order change with user:", currentUser?.username);
       setDataChange((prev) => prev + 1);
     }
 
