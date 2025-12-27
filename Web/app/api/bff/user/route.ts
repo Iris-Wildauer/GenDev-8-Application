@@ -72,7 +72,7 @@ export async function POST(request: NextRequest) {
         await invalidateCache(`widgets:${userId}`);
 
         const io = globalThis.socketIO as Server;
-        io.to(`user_${userId}`).emit("widgetOrderUpdated", {
+        globalThis.socketIO.emit("widgetOrderUpdated", {
           widgetOrder: categoryOrder,
         });
 

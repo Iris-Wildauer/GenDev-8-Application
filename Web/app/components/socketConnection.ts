@@ -26,6 +26,7 @@ export function useSocketConnection() {
 
     function onOrderChange(order) {
       console.log("widgetOrderUpdated:", order);
+      setDataChange((prev) => prev + 1);
     }
 
     socket.on("connect", onConnect);

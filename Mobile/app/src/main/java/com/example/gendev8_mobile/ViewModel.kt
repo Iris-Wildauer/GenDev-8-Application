@@ -35,6 +35,7 @@ class WidgetViewModel : ViewModel() {
         loadUsers()
         loadWidgets()
         SocketManager.setUserChangeCallback { onUserChange() }
+        SocketManager.setWidgetChangeCallback { loadWidgets() }
         SocketManager.connect { loadWidgets() }
     }
 
@@ -126,4 +127,5 @@ class WidgetViewModel : ViewModel() {
             loadWidgets()
         }
     }
+
 }

@@ -15,7 +15,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { GripHorizontal } from "lucide-react";
 
 export default function Widget() {
-  const { user } = useSocketConnection();
+  const { user, dataChange } = useSocketConnection();
   const [data, setData] = useState<any | null>(null);
   const [categoryOrder, setCategoryOrder] = useState<string[]>([]);
 
@@ -31,7 +31,7 @@ export default function Widget() {
         );
       })
       .catch(() => setData(null));
-  }, [user]);
+  }, [user, dataChange]);
 
   const sendDnD = async (newOrder: string[]) => {
     if (!user) return;

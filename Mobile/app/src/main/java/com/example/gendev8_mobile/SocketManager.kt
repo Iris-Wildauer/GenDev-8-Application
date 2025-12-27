@@ -14,11 +14,17 @@ import java.net.URISyntaxException
         val isConnected: StateFlow<Boolean> = _isConnected
 
         private var onUserChangeCallback: (() -> Unit)? = null
+
+        private var onWidgetChangeCallback: (() -> Unit)? = null
         private val _messages = MutableStateFlow<List<String>>(emptyList())
         val messages: StateFlow<List<String>> = _messages
 
         fun setUserChangeCallback(callback: () -> Unit) {
             onUserChangeCallback = callback
+        }
+
+        fun setWidgetChangeCallback(callback: () -> Unit) {
+            onWidgetChangeCallback = callback
         }
 
         fun connect(onWidgetChange: (() -> Unit)?) {
@@ -61,6 +67,7 @@ import java.net.URISyntaxException
             }
 
             socket?.on("widgetOrderUpdated") {
+                onWidgetChangeCallback?.invoke()
                 Log.d("SocketManager", "Received widgetOrderUpdated event")
             }
 

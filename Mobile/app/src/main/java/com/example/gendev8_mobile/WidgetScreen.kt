@@ -200,20 +200,15 @@ fun sortWidgetsByUserOrder(
     val order = currentUser?.widgetOrder
 
     return when {
-        // Wenn widgetOrder vorhanden ist, sortiere danach
         !order.isNullOrEmpty() -> {
-            // Erstelle eine Map für schnellen Zugriff
             val widgetsByCategory = widgets.toMap()
 
-            // Mappe die Order auf die entsprechenden Widgets
-            // mapNotNull filtert automatisch null-Werte heraus
             order.mapNotNull { category ->
                 widgetsByCategory[category]?.let { group ->
                     category to group
                 }
             }
         }
-        // Fallback: Verwende die Original-Reihenfolge
         else -> widgets.toList()
     }
 }
