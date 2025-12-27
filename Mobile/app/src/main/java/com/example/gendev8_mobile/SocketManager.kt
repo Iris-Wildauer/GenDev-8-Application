@@ -60,6 +60,10 @@ import java.net.URISyntaxException
                 Log.d(TAG, "Received user-change event")
             }
 
+            socket?.on("widgetOrderUpdated") {
+                Log.d("SocketManager", "Received widgetOrderUpdated event")
+            }
+
             socket?.connect()
         }
         fun disconnect() {

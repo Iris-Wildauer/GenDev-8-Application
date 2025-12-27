@@ -42,23 +42,10 @@ export function Usernames() {
     try {
       await sendUser(user);
     } catch (err) {
-      console.error("User update failed, rolling back");
+      console.error("User update failed");
       setUser(selectedUsername);
     }
   }
-
-  /*
-  useEffect(() => {
-    if (!selectedUsername) {
-      console.log("Kein Username ausgewählt");
-      return;
-    }
-    sendUser().then((response) => {
-      console.log("Empfangene Daten:", response);
-    });
-  }, []);
-
-   */
 
   useEffect(() => {
     if (user && user.id !== selectedUsername?.id) {
