@@ -6,3 +6,4 @@ Mobile/.gradle
 Mobile/.idea
 Mobile/.kotlin
 nginx.conf
+Web/certbot/conf/
