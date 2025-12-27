@@ -16,6 +16,9 @@ import java.net.URISyntaxException
         private var onUserChangeCallback: (() -> Unit)? = null
 
         private var onWidgetChangeCallback: (() -> Unit)? = null
+
+        private var onOrderChangeCallback: (() -> Unit)? = null
+
         private val _messages = MutableStateFlow<List<String>>(emptyList())
         val messages: StateFlow<List<String>> = _messages
 
@@ -25,6 +28,10 @@ import java.net.URISyntaxException
 
         fun setWidgetChangeCallback(callback: () -> Unit) {
             onWidgetChangeCallback = callback
+        }
+
+        fun setOrderChangeCallback(callback: () -> Unit) {
+            onOrderChangeCallback = callback
         }
 
         fun connect(onWidgetChange: (() -> Unit)?) {

@@ -29,3 +29,14 @@ data class UserRequest(
     val id: String,
     val username: String,
 )
+
+data class WidgetOrderRequest(
+    val method: String,
+    val userId: String,
+    val categoryOrder: List<String>,
+)
+
+data class WidgetOrderResponse(
+    val success: Boolean,
+    val error: String? = null
+)

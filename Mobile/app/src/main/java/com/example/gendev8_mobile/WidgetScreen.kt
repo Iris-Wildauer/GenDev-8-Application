@@ -19,6 +19,9 @@ import androidx.compose.material.icons.filled.DragHandle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
 import androidx.lifecycle.viewmodel.compose.viewModel
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
 
@@ -30,7 +33,10 @@ fun WidgetScreen(
     currentUser: User? = null,
     allUsers: List<User> = emptyList(),
     onWidgetClick: (WidgetInstance) -> Unit,
+    onOrderChanged: (List<String>) -> Unit,
 ) {
+    var sendJob by remember { mutableStateOf<Job?>(null) }
+    val coroutineScope = rememberCoroutineScope()
     println("Frontend" + widgets)
     val userWithOrder = allUsers.find { it.id == currentUser?.id } ?: currentUser
     println("User with order: ${userWithOrder?.widgetOrder}")
@@ -72,7 +78,15 @@ fun WidgetScreen(
                 widgetsList = widgetsList.toMutableList().apply {
                     add(to.index, removeAt(from.index))
                 }
+                sendJob?.cancel()
+                sendJob = coroutineScope.launch {
+                    delay(500)
+                    val newOrder = widgetsList.map { it.first }
+                    println("Drag finished - Sending order: $newOrder")
+                    onOrderChanged(newOrder)
+                }
             }
+
             LazyColumn(
                 state = lazyListState,
                 contentPadding = PaddingValues(vertical = 16.dp),
@@ -211,4 +225,5 @@ fun sortWidgetsByUserOrder(
         }
         else -> widgets.toList()
     }
+
 }

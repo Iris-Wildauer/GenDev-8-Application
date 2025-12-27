@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
 import { NextRequest } from "next/server";
-import { getAllUserData, DEFAULT_USER, setUserWidgets } from "./users";
+import {
+  getAllUserData,
+  DEFAULT_USER,
+  setUserWidgets,
+  getWidgetsForUser,
+} from "./users";
 import {
   getUserWidgetPriorities,
   invalidateCache,
   setUserWidgetPriorities,
 } from "../../../../lib/cache";
 import { Server } from "socket.io";
+import { revalidatePath } from "next/dist/server/web/spec-extension/revalidate";
 
 export let currentUser = DEFAULT_USER;
 
@@ -62,23 +68,23 @@ export async function POST(request: NextRequest) {
       );
     }
   } else if (body.method === "setWidgetOrder") {
-    if (body.method === "setWidgetOrder") {
-      const { categoryOrder, userId } = body;
+    const { categoryOrder, userId } = body;
 
-      const success: boolean = setUserWidgets(userId, categoryOrder);
+    const success: boolean = setUserWidgets(userId, categoryOrder);
 
-      if (success) {
-        await invalidateCache(`preferences:${userId}`);
-        await invalidateCache(`widgets:${userId}`);
+    if (success) {
+      await invalidateCache(`preferences:${userId}`);
+      await invalidateCache(`widgets:${userId}`);
 
-        const io = globalThis.socketIO as Server;
-        globalThis.socketIO.emit("widgetOrderUpdated", {
-          widgetOrder: categoryOrder,
-        });
+      globalThis.socketIO.emit("widgetOrderUpdated", {
+        widgetOrder: categoryOrder,
+      });
 
-        return NextResponse.json({ success: true });
-      }
-      return NextResponse.json({ error: "User not found" }, { status: 404 });
+      return NextResponse.json({
+        success: true,
+        widgetOrder: categoryOrder,
+      });
     }
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
   }
 }

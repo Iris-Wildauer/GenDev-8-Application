@@ -127,5 +127,27 @@ class WidgetViewModel : ViewModel() {
             loadWidgets()
         }
     }
+    fun updateWidgetOrder(newOrder: List<String>) {
+        _categoryOrder.value = newOrder
+        _currentUser.value = _currentUser.value?.copy(widgetOrder = newOrder)
+        _selectedUser.value = _selectedUser.value?.copy(widgetOrder = newOrder)
 
+        viewModelScope.launch{
+        val requestBody = WidgetOrderRequest(
+            method = "setWidgetOrder",
+            userId = _currentUser.value?.id ?: "0" ,
+            categoryOrder = _categoryOrder.value
+        )
+
+        val response = RetrofitInstance.api.updateWidgetOrder(requestBody)
+
+        if (response.success) {
+            Log.d("WidgetViewModel", "Widget order updated successfully")
+        } else {
+            Log.e("WidgetViewModel", "Server rejected order update")
+            loadUsers()
+            loadWidgets()
+        }
+        }
+    }
 }

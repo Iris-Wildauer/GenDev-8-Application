@@ -57,6 +57,9 @@ class MainActivity : ComponentActivity() {
                             isLoading = isLoading,
                             allUsers = allUsers,
                             currentUser = selectedUser,
+                            onOrderChanged = { newOrder ->
+                                viewModel.updateWidgetOrder(newOrder)
+                            },
                             onWidgetClick = {},
                         )
                     }

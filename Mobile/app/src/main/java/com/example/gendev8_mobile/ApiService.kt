@@ -15,6 +15,9 @@ interface ApiService {
 
     @POST("api/bff/user")
     suspend fun selectUser(@Body user: UserRequest)
+
+    @POST("api/bff/user")
+    suspend fun updateWidgetOrder(@Body requestBody: WidgetOrderRequest): WidgetOrderResponse
 }
 
 object RetrofitInstance {

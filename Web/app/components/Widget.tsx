@@ -19,8 +19,6 @@ export default function Widget() {
   const [data, setData] = useState<any | null>(null);
   const [categoryOrder, setCategoryOrder] = useState<string[]>([]);
 
-  console.log("webbff", process.env.NEXT_PUBLIC_WEBBFF);
-
   useEffect(() => {
     fetch(process.env.NEXT_PUBLIC_WEBBFF!)
       .then((res) => res.json())
@@ -35,7 +33,7 @@ export default function Widget() {
 
   const sendDnD = async (newOrder: string[]) => {
     if (!user) return;
-    return await fetch(process.env.NEXT_PUBLIC_USERS!, {
+    return await fetch(process.env.NEXT_PUBLIC_USERS, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -60,6 +58,26 @@ export default function Widget() {
     }
   }
 
+  useEffect(() => {
+    async function updateWidgetOrder() {
+      try {
+        const res = await fetch(process.env.NEXT_PUBLIC_USERS!);
+        const json = await res.json();
+
+        console.log("Fetched user data:", json);
+
+        if (json.currentUser?.widgetOrder) {
+          console.log("Setting category order:", json.currentUser.widgetOrder);
+          setCategoryOrder(json.currentUser.widgetOrder);
+        }
+      } catch (err) {
+        console.error("Error fetching widget order:", err);
+      }
+    }
+
+    updateWidgetOrder();
+  }, [dataChange]);
+
   function SortableItem({
     widgets,
     category,
@@ -83,6 +101,11 @@ export default function Widget() {
       transition,
       zIndex: isDragging ? 50 : "auto",
     };
+
+    useEffect(() => {
+      console.log("dataChanged", dataChange);
+      console.log("widgets in category", categoryOrder, data);
+    }, [dataChange]);
 
     return (
       <div
