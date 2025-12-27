@@ -48,7 +48,7 @@ export function Usernames() {
   }, [selectedUsername]);
 
   useEffect(() => {
-    if (user) {
+    if (user && user.id !== selectedUsername?.id) {
       setUser(user);
     }
   }, [user]);
