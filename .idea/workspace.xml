@@ -5,20 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61d7d928-ed36-4742-808c-d65ada6fc487" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/build.gradle.kts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ApiService.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ApiService.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/SocketManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/SocketManager.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/ViewModel.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetGroup.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetGroup.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetInstance.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Mobile/app/src/main/java/com/example/gendev8_mobile/WidgetInstance.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/user/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/user/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/user/users.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/user/users.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/api/bff/web/route.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/app/components/Widget.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/Web/app/components/Widget.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Web/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/Web/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" afterPath="$PROJECT_DIR$/nginx.conf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Web/docker-compose.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/nginx.conf" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,7 +15,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="EmbeddingIndexingInfo">
-    <option name="cachedIndexableFilesCount" value="1174" />
+    <option name="cachedIndexableFilesCount" value="1177" />
     <option name="fileBasedEmbeddingIndicesEnabled" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
@@ -65,31 +54,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ModuleVcsDetector.initialDetectionPerformed": "true",
-    "RunOnceActivity.MCP Project settings loaded": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
-    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "RunOnceActivity.typescript.service.memoryLimit.init": "true",
-    "git-widget-placeholder": "main",
-    "javascript.nodejs.core.library.configured.version": "22.18.0",
-    "javascript.nodejs.core.library.typings.version": "22.18.13",
-    "javascript.preferred.runtime.type.id": "node",
-    "last_opened_file_path": "C:/Users/h-wil/dev/GenDev-8-Application/Web",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "prettierjs.PrettierConfiguration.Package": "C:\\Users\\h-wil\\dev\\GenDev-8-Application\\node_modules\\prettier",
-    "settings.editor.selected.configurable": "settings.javascript.prettier",
-    "ts.external.directory.path": "C:\\Users\\h-wil\\dev\\GenDev-8-Application\\Web\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.MCP Project settings loaded&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.typescript.service.memoryLimit.init&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;22.18.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;22.18.13&quot;,
+    &quot;javascript.preferred.runtime.type.id&quot;: &quot;node&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/h-wil/dev/GenDev-8-Application/Web&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;prettierjs.PrettierConfiguration.Package&quot;: &quot;C:\\Users\\h-wil\\dev\\GenDev-8-Application\\node_modules\\prettier&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.javascript.prettier&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Users\\h-wil\\dev\\GenDev-8-Application\\Web\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\h-wil\dev\GenDev-8-Application\Web" />
@@ -121,6 +110,7 @@
       <workItem from="1766437911918" duration="5395000" />
       <workItem from="1766685057075" duration="2133000" />
       <workItem from="1766783947017" duration="4479000" />
+      <workItem from="1766831376083" duration="869000" />
     </task>
     <task id="LOCAL-00001">
       <option name="closed" value="true" />

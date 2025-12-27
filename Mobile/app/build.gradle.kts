@@ -28,7 +28,7 @@ android {
     buildTypes {
         debug {
             buildConfigField("String", "BFF", "\"https://iris-wildauer.de/api/bff/web\"")
-            buildConfigField("String", "PICTURE", "\"https://iris-wildauer.de/api/widgets/media-serivce\"")
+            buildConfigField("String", "PICTURE", "\"https://iris-wildauer.de/api/widgets/media-service/\"")
             buildConfigField("String", "BASE_URL", "\"https://iris-wildauer.de\"")
         }
         release {
