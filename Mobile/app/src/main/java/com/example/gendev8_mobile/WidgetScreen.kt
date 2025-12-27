@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.DragHandle
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.text.font.FontWeight
+import androidx.lifecycle.viewmodel.compose.viewModel
 import sh.calvin.reorderable.ReorderableItem
 import sh.calvin.reorderable.rememberReorderableLazyListState
 
@@ -26,8 +27,10 @@ import sh.calvin.reorderable.rememberReorderableLazyListState
 fun WidgetScreen(
     widgets: Map<String, WidgetGroup>?,
     isLoading: Boolean,
+    currentUser: User? = null,
     onWidgetClick: (WidgetInstance) -> Unit
 ) {
+    println("Frontend" + widgets)
     when {
         isLoading -> {
             LazyColumn(
@@ -57,7 +60,11 @@ fun WidgetScreen(
 
         widgets != null && widgets.isNotEmpty() -> {
             val lazyListState = rememberLazyListState()
-            var widgetsList by remember { mutableStateOf(widgets.toList()) }
+            var widgetsList by remember { mutableStateOf(sortWidgetsByUserOrder(widgets, currentUser)) }
+
+            LaunchedEffect(widgets) {
+                widgetsList = sortWidgetsByUserOrder(widgets, currentUser)
+            }
 
             val reorderableLazyListState = rememberReorderableLazyListState(lazyListState) { from, to ->
                 widgetsList = widgetsList.toMutableList().apply {
@@ -124,7 +131,7 @@ fun WidgetScreen(
                                                 widget = widget,
                                                 onClick = { onWidgetClick(widget) }
                                             )
-                                        } else {
+                                        } else if (group.design == "style2") {
                                             WidgetCard2(
                                                 widget = widget,
                                                 onClick = { onWidgetClick(widget) }
@@ -181,5 +188,20 @@ fun SkeletonCard() {
                 )
             }
         }
+    }
+}
+
+fun sortWidgetsByUserOrder(
+    widgets: Map<String, WidgetGroup>,
+    currentUser: User?
+): List<Pair<String, WidgetGroup>> {
+    val order = currentUser?.widgetOrder ?: emptyList()
+
+    return if (order.isNotEmpty()) {
+        order.mapNotNull { category ->
+            widgets[category]?.let { category to it }
+        }
+    } else {
+        widgets.toList()
     }
 }

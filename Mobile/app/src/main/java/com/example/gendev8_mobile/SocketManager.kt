@@ -38,7 +38,6 @@ object SocketManager {
                 return
             }
 
-
             socket?.on(Socket.EVENT_CONNECT) {
                 _isConnected.value = true
                 Log.d(TAG, "Socket connected!")
@@ -80,10 +79,6 @@ object SocketManager {
     private var onUserChangeCallback: (() -> Unit)? = null
     private val _messages = MutableStateFlow<List<String>>(emptyList())
     val messages: StateFlow<List<String>> = _messages
-
-    fun connect() {
-        connect(null)
-    }
 
     fun connect(onUserChange: (() -> Unit)?) {
         onUserChangeCallback = onUserChange

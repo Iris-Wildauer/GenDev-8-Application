@@ -1,6 +1,7 @@
 package com.example.gendev8_mobile
 
 
+import okhttp3.RequestBody
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.*
@@ -13,7 +14,7 @@ interface ApiService {
     suspend fun getAllUsers(): UserResponse
 
     @POST("api/bff/user")
-    suspend fun selectUser(@Body user: User)
+    suspend fun selectUser(@Body user: UserRequest)
 }
 
 object RetrofitInstance {

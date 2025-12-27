@@ -1,6 +1,5 @@
 package com.example.gendev8_mobile
 
-// MainActivity.kt
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -27,6 +26,10 @@ class MainActivity : ComponentActivity() {
                 val selectedUser by viewModel.selectedUser.collectAsState()
                 val isLoading by viewModel.isLoading.collectAsState()
 
+                LaunchedEffect(Unit) {
+                    viewModel.loadUsers()
+                }
+
                 Scaffold(
                     topBar = {
                         TopBar(
@@ -50,6 +53,7 @@ class MainActivity : ComponentActivity() {
                         WidgetScreen(
                             widgets = widgets,
                             isLoading = isLoading,
+                            currentUser = selectedUser,
                             onWidgetClick = { widget ->
                                 widget.link?.let { link ->
                                     val intent = Intent(Intent.ACTION_VIEW, link.toUri())

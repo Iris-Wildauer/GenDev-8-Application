@@ -23,11 +23,8 @@ class WidgetViewModel : ViewModel() {
     private val _isLoading = MutableStateFlow(true)
     val isLoading: StateFlow<Boolean> = _isLoading
 
-    var draggedWidget by mutableStateOf<WidgetInstance?>(null)
-        private set
-
-    var dropTargetWidget by mutableStateOf<WidgetInstance?>(null)
-        private set
+    private val _currentUser = MutableStateFlow<User?>(null)
+    val currentUser: StateFlow<User?> = _currentUser
 
     init {
         Log.d("WidgetViewModel", "ViewModel initialized")
@@ -36,31 +33,10 @@ class WidgetViewModel : ViewModel() {
         SocketManager.connect { loadWidgets() }
     }
 
-    fun onDragStart(widget: WidgetInstance) {
-        draggedWidget = widget
-    }
-
-    fun onDragEnd() {
-        draggedWidget = null
-        dropTargetWidget = null
-    }
-
-    fun onDragEnter(targetWidget: WidgetInstance) {
-        if (draggedWidget != targetWidget) {
-            dropTargetWidget = targetWidget
-        }
-    }
-
-    fun onDragExit() {
-        dropTargetWidget = null
-    }
-
-
     fun loadWidgets() {
         viewModelScope.launch {
             _isLoading.value = true
             Log.d("WidgetViewModel", "Loading widgets...")
-            println("hallo")
             try {
                 val result = RetrofitInstance.api.getWidgets()
                 Log.d("WidgetViewModel", "API Response: $result")
@@ -90,7 +66,9 @@ class WidgetViewModel : ViewModel() {
                 Log.d("WidgetViewModel", "Loading users...")
                 val result = RetrofitInstance.api.getAllUsers()
                 Log.d("WidgetViewModel", "API Response: $result")
+                _selectedUser.value = result.currentUser
                 _users.value = result.allUsers
+                _currentUser.value = result.currentUser
             } catch (e: Exception) {
                 Log.e("WidgetViewModel", "Error loading users", e)
                 _users.value = emptyList()
@@ -101,15 +79,17 @@ class WidgetViewModel : ViewModel() {
     fun selectUser(user: User) {
         viewModelScope.launch {
             _selectedUser.value = user
+            _currentUser.value = user
             Log.d("WidgetViewModel", "User selected: ${user.username}")
             try {
-                val requestBody = mapOf(
-                    "id" to user.id,
-                    "username" to user.username,
+                val requestBody = UserRequest(
+                    method = "setUser",
+                    id = user.id,
+                    username = user.username,
                 )
                 Log.d("WidgetViewModel", "Sending user data: $requestBody")
 
-                RetrofitInstance.api.selectUser(user)
+                RetrofitInstance.api.selectUser(requestBody)
                 Log.d("WidgetViewModel", "User selection successful")
 
                 loadWidgets()

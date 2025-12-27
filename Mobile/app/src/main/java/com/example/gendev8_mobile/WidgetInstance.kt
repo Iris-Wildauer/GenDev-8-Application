@@ -8,6 +8,7 @@ data class WidgetInstance(
 )
 
 data class User(
+    val method: String,
     val id: String,
     val username: String,
     val widgetOrder: List<String>,
@@ -16,4 +17,10 @@ data class User(
 data class UserResponse(
     val allUsers: List<User>,
     val currentUser: User
+)
+
+data class UserRequest(
+    val method: String,
+    val id: String,
+    val username: String,
 )
