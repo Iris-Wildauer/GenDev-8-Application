@@ -2,10 +2,12 @@
 
 import { useEffect, useState } from "react";
 import { socket } from "../../socket";
+import { useSocketConnection } from "./socketConnection";
 
 export function Usernames() {
   const [allUsers, setAllUsers] = useState([]);
   const [selectedUsername, setUser] = useState(null);
+  const { user } = useSocketConnection();
 
   useEffect(() => {
     fetch(process.env.NEXT_PUBLIC_USERS)
@@ -44,6 +46,12 @@ export function Usernames() {
       console.log("Empfangene Daten:", response);
     });
   }, [selectedUsername]);
+
+  useEffect(() => {
+    if (user) {
+      setUser(user);
+    }
+  }, [user]);
 
   return (
     <>
