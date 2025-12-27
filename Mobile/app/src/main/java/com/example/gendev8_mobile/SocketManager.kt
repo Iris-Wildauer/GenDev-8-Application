@@ -68,6 +68,7 @@ import java.net.URISyntaxException
 
             socket?.on("widgetOrderUpdated") {
                 onWidgetChangeCallback?.invoke()
+                onUserChangeCallback?.invoke()
                 Log.d("SocketManager", "Received widgetOrderUpdated event")
             }
 
