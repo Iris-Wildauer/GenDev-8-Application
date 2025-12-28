@@ -17,13 +17,6 @@ Alle Architekturentscheidungen, Trade-offs und Production-Ready-Erweiterungen si
 
 [Live Demo](https://iris-wildauer.de)
 
-### Grenzen des PoC
+### Video
+[YouTube Video](https://youtu.be/MmP_TXLsxDM)
 
-Der Proof of Concept priorisiert Architektur und Systemverhalten über Feature-Tiefe.
-Einige Entscheidungen wurden bewusst vereinfacht, um Komplexität zu reduzieren und den Fokus zu wahren:
-
-- vereinfachtes User- & Session-Handling
-- manuelles Infrastruktur-Setup
-- eingeschränkte Plattformabdeckung
-
-Alle Punkte sind im CONCEPT.md mit möglichen Production-Alternativen dokumentiert.

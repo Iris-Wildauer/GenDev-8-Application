@@ -221,3 +221,11 @@ Diese Dokumentation beschreibt die Architekturentscheidungen für das Projekt mi
 - Ansible für automatisiertes Server Setup
 - Monitoring mit Prometheus + Grafana
 - Automatisiertes SSL Zertifikatsmanagement
+
+
+Der Proof of Concept priorisiert Architektur und Systemverhalten über Feature-Tiefe.
+Einige Entscheidungen wurden bewusst vereinfacht, um Komplexität zu reduzieren und den Fokus zu wahren:
+
+- vereinfachtes User- & Session-Handling
+- manuelles Infrastruktur-Setup
+- eingeschränkte Plattformabdeckung
