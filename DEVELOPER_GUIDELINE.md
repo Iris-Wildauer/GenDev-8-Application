@@ -126,7 +126,7 @@ internet:
 
 Bilder liegen im eigenen `images/` Ordner des Speedboats (Port 8082)
 **JSON-Pfad:** `"images/BildName"`  
-**URL:** `http://localhost:8081/images/BildName`
+**URL:** `http://iris-wildauer.de/api/widgets/media-service/images/BildName`
 
 ## Das Speedboat im Backend einbauen
 
