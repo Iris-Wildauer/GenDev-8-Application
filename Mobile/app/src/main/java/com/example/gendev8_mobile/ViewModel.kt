@@ -61,7 +61,6 @@ class WidgetViewModel : ViewModel() {
                     }
 
                 _widgets.value = responseObj
-                Log.d("WidgetViewModel", "Widgets successfully set")
             } catch (e: Exception) {
                 Log.e("WidgetViewModel", "Error loading widgets: ${e.message}", e)
                 Log.e("WidgetViewModel", "Error type: ${e.javaClass.simpleName}")
