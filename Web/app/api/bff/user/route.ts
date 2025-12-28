@@ -42,13 +42,6 @@ export async function POST(request: NextRequest) {
       console.log("[POST /user] Updated currentUser to:", currentUser.username);
 
       if (globalThis.socketIO) {
-        /*
-        globalThis.socketIO.to(body.socketId).emit("user-change", currentUser);
-        console.log(`[Socket.io] ${body.socketId}`);
-      } else if (globalThis.socketIO) {
-
-         */
-        // Fallback: Broadcast wenn keine socketId
         globalThis.socketIO.emit("user-change", currentUser);
         console.log(`[Socket.io] (no socketId)`);
       }

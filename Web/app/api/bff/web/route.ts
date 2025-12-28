@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getWidgets } from "./webBff";
-import { getCached } from "../../../../lib/cache";
 import { getAuthenticatedUser } from "../../../../lib/auth";
-import { WidgetCategory } from "../../../../lib/widgetDefinitions";
-import { currentUser } from "../user/route";
 import { DEFAULT_USER, getUserById } from "../user/users";
 
 export async function GET(request: NextRequest) {

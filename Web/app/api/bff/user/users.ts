@@ -22,13 +22,6 @@ export function getUserById(id: string) {
   return USERS.find((u) => u.id == id);
 }
 
-export function getAllUsersNames() {
-  return USERS.map((user) => ({
-    username: user.username,
-    id: user.id,
-  }));
-}
-
 export function getAllUserData() {
   return USERS;
 }

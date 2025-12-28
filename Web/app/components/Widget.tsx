@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { WidgetInstance } from "../../lib/widgetDefinitions";
 import { socket } from "../../socket";
 import { useSocketConnection } from "./socketConnection";
 import { closestCorners, DndContext, DragEndEvent } from "@dnd-kit/core";
