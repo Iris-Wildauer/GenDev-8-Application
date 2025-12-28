@@ -1,17 +1,29 @@
 # CHECK24 GenDev 8
 
-Dieses Repository enthält meinen Beitrag zur CHECK24 GenDev 8 Challenge.
-Es zeigt ein technisches Konzept und einen lauffähigen Proof of Concept für moderne, produktgetriebene Home Widgets, die in einer stark dezentralisierten Systemlandschaft performant, hochverfügbar und personalisiert betrieben werden können.
+**Orchestrated Home Widgets at Scale** – Ein flexibles, produktgetriebenes Widget-System, das sich sauber in eine moderne, dezentralisierte Architektur einfügt.
 
-Kernidee: Die Home ist Orchestrator, nicht Fachlogik-Owner. Produkte liefern personalisierte Widget-Daten über klar definierte Contracts, während ein Backend-for-Frontend (Next.js BFF) die Inhalte bündelt, cached und bei Ausfällen graceful degradiert. Dadurch werden Produktservices zuverlässig vor Home-Traffic-Spitzen geschützt, ohne die Datenaktualität unnötig zu opfern.
 
-Der PoC zeigt:
+## Konzept
 
-Multi-Plattform Support: Web (Next.js/React) + Android (Jetpack Compose)
-Performance-Schutz: Redis-Caching zur drastischen Reduktion externer Calls
-Resilienz: Ausfall einzelner Speedboats beeinträchtigt die Home nicht
-Deployment als MVP: Docker + nginx + Redis auf Hetzner, CI/CD via GitHub Actions, TLS via Let’s Encrypt
-Alle Architekturentscheidungen, Trade-offs und Production-Ready-Erweiterungen sind nachvollziehbar in [Concept](CONCEPT.md) dokumentiert; die Integrationsperspektive für Produktteams ist in [Developer Guideline](DEVELOPER_GUIDELINE.md) beschrieben.
+Die Homepage orchestriert, statt monolithischer Fachlogik besitzen Produktteams ihre Widget-Daten. Ein Next.js BFF bündelt die Inhalte, cached mit Redis und degradiert graceful bei Ausfällen.
+
+## Features
+
+- **Multi-Plattform**: Web (Next.js/React) + Android (Jetpack Compose)
+- **Performance**: Redis-Caching reduziert Backend-Load drastisch
+- **Resilienz**: Einzelne Speedboat-Ausfälle beeinträchtigen die Home nicht
+- **Production-Ready**: Docker, nginx, Redis auf Hetzner mit CI/CD
+
+## Tech Stack
+
+Frontend: Next.js 15, React 19, Jetpack Compose
+Backend: Node.js, Redis
+Infra: Docker, nginx, GitHub Actions
+
+## Dokumentation
+
+- **[CONCEPT.md](CONCEPT.md)**
+- **[DEVELOPER_GUIDELINE.md](DEVELOPER_GUIDELINE.md)**
 
 ### Live Deployment
 
