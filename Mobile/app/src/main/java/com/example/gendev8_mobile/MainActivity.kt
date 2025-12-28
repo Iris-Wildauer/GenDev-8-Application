@@ -46,11 +46,6 @@ class MainActivity : ComponentActivity() {
                             .fillMaxSize()
                             .padding(padding)
                     ) {
-                        Text(
-                            text = "CHECK24 GenDev",
-                            style = MaterialTheme.typography.headlineMedium,
-                            modifier = Modifier.padding(16.dp)
-                        )
 
                         WidgetScreen(
                             widgets = widgets,
