@@ -1,6 +1,6 @@
 # CHECK24 GenDev 8
 
-**Orchestrated Home Widgets at Scale** – Ein flexibles, produktgetriebenes Widget-System, das sich sauber in eine moderne, dezentralisierte Architektur einfügt.
+**Orchestrated Home Widgets at Scale** Ein flexibles, produktgetriebenes Widget-System, das sich sauber in eine moderne, dezentralisierte Architektur einfügt.
 
 
 ## Konzept
@@ -24,10 +24,6 @@ Infra: Docker, nginx, GitHub Actions
 
 - **[CONCEPT.md](CONCEPT.md)**
 - **[DEVELOPER_GUIDELINE.md](DEVELOPER_GUIDELINE.md)**
-
-### Live Deployment
-
-[Live Demo](https://iris-wildauer.de)
 
 ### Video
 [YouTube Video](https://youtu.be/MmP_TXLsxDM)
